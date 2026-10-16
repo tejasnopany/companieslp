@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Price Lists · Electric Hub Sangam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      .x-search { display: grid; gap: 8px; max-width: 520px; }
+      .x-search label { font: var(--type-label); color: var(--text-secondary); }
+      .x-search input {
+        width: 100%;
+        min-height: var(--tap);
+        padding: 10px 16px;
+        border-radius: var(--r-s);
+        border: 1px solid var(--stroke-primary);
+        background: var(--fill-primary-on);
+        color: var(--text-primary);
+        font: var(--type-body);
+        font-size: 16px;
+      }
+      .x-search input:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+      .x-search .fineprint:empty { display: none; }
+      .x-tile { display: flex; flex-direction: column; gap: 6px; }
+      .x-tile h3 { margin-bottom: 0; }
+      .x-tile .links { margin-top: auto; padding-top: 12px; }
+      .x-tile[hidden], .section[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <div class="page" id="top">
+      <header class="nav glass" data-auto></header>
+      <main class="main">
+        <section class="hero">
+          <div class="hero__copy">
+            <p class="hero__eyebrow">House of Electric Hub · Sangam · New Sangam, Motihari</p>
+            <h1>Latest Price Lists</h1>
+            <p class="hero__sub">Open or download the brands' official price lists, all in one place.</p>
+            <p class="hero__meta">Havells · GM Modular · Motihari, Bihar</p>
+          </div>
+        </section>
+
+        <div class="x-search" role="search">
+          <label for="q">Find a price list</label>
+          <input id="q" type="search" placeholder="Type a name, e.g. wires, MCB, fans" autocomplete="off" />
+          <p class="fineprint" id="q-status" aria-live="polite"></p>
+        </div>
+
+        <section class="section" id="havells" data-nav="Havells">
+          <div class="head">
+            <p class="head__eyebrow">Brand</p>
+            <h2>Havells</h2>
+            <p class="head__sub">19 price lists: wires, switchgear, switches, lighting, fans and appliances.</p>
+          </div>
+          <div class="cards">
+            <div class="x-tile">
+              <h3>Wires</h3>
+              <p>Life Line, consumer cables</p>
+              <p class="fineprint">Price list w.e.f. 14 May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Cables/Havells_ConsumerCables.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Cables/Havells_ConsumerCables.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Industrial Cables</h3>
+              <p>Industrial power and control cables</p>
+              <p class="fineprint">Price list w.e.f. 14 Aug 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Industrial_Cables/Havells_Industrial_Cables.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Industrial_Cables/Havells_Industrial_Cables.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>REO Range</h3>
+              <p>Switches, MCB, fans, lighting</p>
+              <p class="fineprint">Price list w.e.f. 1 May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/REO/REO_Range_LP.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/REO/REO_Range_LP.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>REO Wire</h3>
+              <p>REO house wires</p>
+              <p class="fineprint">Price list w.e.f. 18 Apr 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/REO/REO_Wire.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/REO/REO_Wire.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Crabtree Switches</h3>
+              <p>Athena, Coral, Verona, Fabio and more</p>
+              <p class="fineprint">Price list w.e.f. 1 Apr 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Switches/Havells_Crabtree_Switches.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Switches/Havells_Crabtree_Switches.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Consumer Switchgear</h3>
+              <p>MCB, RCCB, DB</p>
+              <p class="fineprint">Price list w.e.f. 9 Apr 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Switchgear/Havells_ConsumerSwitchgear.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Switchgear/Havells_ConsumerSwitchgear.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>STADx Distribution Boards &amp; MCB</h3>
+              <p>STADx DBs and MCBs</p>
+              <p class="fineprint">Price list w.e.f. 24 Mar 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_STADx/Havells_STADx.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_STADx/Havells_STADx.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>STADx RCCB</h3>
+              <p>STADx residual current breakers</p>
+              <p class="fineprint">Price list w.e.f. 24 Mar 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_STADx/Havells_STADx_RCCB.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_STADx/Havells_STADx_RCCB.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>X7 Switchgear</h3>
+              <p>X7 switchgear range</p>
+              <p class="fineprint">Price list w.e.f. 9 Apr 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_X7/Havells_X7.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Havells_X7/Havells_X7.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Fans</h3>
+              <p>Consumer and industrial fans</p>
+              <p class="fineprint">Price list updated 1 Jun 2024</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Industrial_Fans/Havells_Fans.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_Industrial_Fans/Havells_Fans.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Consumer LED Lighting</h3>
+              <p>LED bulbs, battens and home lighting</p>
+              <p class="fineprint">Price list w.e.f. 1 Jan 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_LED_Lighting/Havells_ConsumerLEDLighting.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Consumer_LED_Lighting/Havells_ConsumerLEDLighting.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Professional Luminaires</h3>
+              <p>Commercial and professional lighting</p>
+              <p class="fineprint">Price list w.e.f. 1 May 2025</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Professional_Luminaires/Havells_ProfessionalLuminaires.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Professional_Luminaires/Havells_ProfessionalLuminaires.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Appliances</h3>
+              <p>Mixers, kettles, air fryers, irons</p>
+              <p class="fineprint">Price list w.e.f. 25 Jun 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Appliances/Havells_Appliances.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Appliances/Havells_Appliances.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Water Heaters</h3>
+              <p>Geysers and water heaters</p>
+              <p class="fineprint">Price list w.e.f. 1 Jan 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Water_Heaters/Havells_WaterHeaters.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Water_Heaters/Havells_WaterHeaters.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Personal Grooming</h3>
+              <p>Grooming appliances</p>
+              <p class="fineprint">Price list w.e.f. 1 May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Female_Grooming/Havells_PersonalGrooming.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Female_Grooming/Havells_PersonalGrooming.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Air Coolers</h3>
+              <p>Room and desert coolers</p>
+              <p class="fineprint">Price list w.e.f. 1 Feb 2025</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Air_Cooler/Havells_AirCooler.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Air_Cooler/Havells_AirCooler.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Pumps</h3>
+              <p>Water pumps</p>
+              <p class="fineprint">Price list effective 1 May 2024</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Pumps/Havells_Pumps.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Pumps/Havells_Pumps.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Chimney &amp; Hob</h3>
+              <p>Kitchen chimneys and hobs</p>
+              <p class="fineprint">Price list w.e.f. 1 Aug 2024</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Chimney_and_Hob/Havells_Chimney_and_Hob.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Chimney_and_Hob/Havells_Chimney_and_Hob.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Water Purifiers</h3>
+              <p>Leaflet</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Water_Purifier/Havells_WaterPurifierLeaflet.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://havells.com/media/wysiwyg/Brochure-and-pricelist/Water_Purifier/Havells_WaterPurifierLeaflet.pdf" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="gm" data-nav="GM Modular">
+          <div class="head">
+            <p class="head__eyebrow">Brand</p>
+            <h2>GM Modular</h2>
+            <p class="head__sub">16 price lists and catalogues. Open shows the flipbook; Download saves the PDF.</p>
+          </div>
+          <div class="cards">
+            <div class="x-tile">
+              <h3>GX</h3>
+              <p>GX range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/GX-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=73497420&amp;type=1&amp;title=GX%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>FOUR FIVE</h3>
+              <p>FOUR FIVE range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/FOURFIVE-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=42072880&amp;type=1&amp;title=FOURFIVE%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-MAGIC</h3>
+              <p>G-MAGIC range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/GMAGIC-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=29131168&amp;type=1&amp;title=GMAGIC%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-NINE (G9)</h3>
+              <p>G9 range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/G9-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=38561121&amp;type=1&amp;title=G9%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G7</h3>
+              <p>G7 range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/G7-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=44311533&amp;type=1&amp;title=G7%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>CUBA</h3>
+              <p>CUBA range price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/CUBA-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=78688830&amp;type=1&amp;title=CUBA%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Switchgear</h3>
+              <p>GM switchgear price list</p>
+              <p class="fineprint">Price list w.e.f. May 2026</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/Switchgear-Price-List-May-2026/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=11139372&amp;type=1&amp;title=Switchgear%20Price%20List%20May%202026" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Wires &amp; Cables</h3>
+              <p>GM wires and cables</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/njqv/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamkjMxYDMwUTPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Pipes &amp; Fittings</h3>
+              <p>Conduit pipes and fittings</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/kxts/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamMDN5UTM2ETPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Fans &amp; Appliances</h3>
+              <p>Fan and appliance catalogue</p>
+              <p class="fineprint">Catalogue 2025</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/idbs/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=56680730&amp;type=1&amp;title=Fan%20Catalouge%202025%20Single%20Page_Web" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>LED Catalogue</h3>
+              <p>GM LED lighting</p>
+              <p class="fineprint">Catalogue Dec 2024</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/wbdj/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=63724939&amp;type=1&amp;title=GM%20LED%20Catalogue%20December%202024" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-HOME LED</h3>
+              <p>G-HOME LED range</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/kfla/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamgjM4YDN2ETPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-HOME</h3>
+              <p>G-HOME range</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/pvki/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamgzM5UTM2ETPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-ERA</h3>
+              <p>G-ERA range</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/wtac/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamczM5UTM2ETPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>G-BUS</h3>
+              <p>Home automation</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/jbsx/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=x0DZh9GTud3bENXamUzN0QjM5ETPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <h3>Facade Lights</h3>
+              <p>Outdoor facade lighting</p>
+              <p class="fineprint">Date not stated</p>
+              <div class="links">
+                <a class="btn" href="https://online.fliphtml5.com/klky/ltza/" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="https://fliphtml5.com/download/download-pdf-file.php?str=QM9QWYvxkb39GRzlmJ2ETMxIjNxkTPkl0av9mY" target="_blank" rel="noopener" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- More brands (e.g. Polycab) or our own uploaded PDFs: add a new section here, same tile markup. -->
+        <p class="fineprint" id="q-empty" hidden>No price list matches that name. Try a shorter word.</p>
+      </main>
+      <footer class="foot">
+        <p>Prices are the brands' official list prices / MRP, subject to change by the brand. Page last updated 16 Oct 2026.</p>
+        <nav aria-label="Back to sections" data-auto></nav>
+        <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"
+          ><span class="hark-mark"></span><span>built by hark</span></a
+        >
+      </footer>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        var input = document.getElementById("q");
+        var status = document.getElementById("q-status");
+        var empty = document.getElementById("q-empty");
+        var tiles = Array.prototype.slice.call(document.querySelectorAll(".x-tile"));
+        var sections = Array.prototype.slice.call(document.querySelectorAll(".main .section"));
+        input.addEventListener("input", function () {
+          var q = input.value.trim().toLowerCase();
+          var shown = 0;
+          tiles.forEach(function (t) {
+            var sec = t.closest(".section");
+            var brand = sec ? sec.querySelector("h2").textContent : "";
+            var name = (brand + " " + t.querySelector("h3").textContent + " " + t.querySelector("p").textContent).toLowerCase();
+            var hit = !q || name.indexOf(q) !== -1;
+            t.hidden = !hit;
+            if (hit) shown++;
+          });
+          sections.forEach(function (s) {
+            if (!s.querySelector(".x-tile")) return;
+            s.hidden = !s.querySelector(".x-tile:not([hidden])");
+          });
+          empty.hidden = shown !== 0;
+          status.textContent = q ? shown + " of " + tiles.length + " price lists" : "";
+        });
+      })();
+    </script>
+  </body>
+</html>
