@@ -44,6 +44,10 @@
       .x-cover img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform var(--dur-quick) var(--ease-out); }
       .x-cover:hover img { transform: scale(1.02); }
       .x-cover:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+      .x-logos { display: flex; justify-content: center; align-items: center; gap: clamp(12px, 3vw, 24px); margin: 0 0 6px; padding: 0; list-style: none; }
+      .x-logos li { width: 88px; height: 88px; padding: 6px; border-radius: var(--r-m); background: #fff; box-shadow: var(--hark-shadow); overflow: hidden; }
+      .x-logos img { display: block; width: 100%; height: 100%; object-fit: contain; }
+      @media (max-width: 760px) { .x-logos li { width: 56px; height: 56px; padding: 4px; border-radius: var(--r-s); } }
     </style>
   </head>
   <body>
@@ -52,6 +56,11 @@
       <main class="main">
         <section class="hero">
           <div class="hero__copy">
+            <ul class="x-logos" aria-label="Our businesses">
+              <li><img src="logo_ehub.png" alt="Electric Hub" width="400" height="400" /></li>
+              <li><img src="logo_sangam.png" alt="Sangam" width="400" height="400" /></li>
+              <li><img src="logo_newsangam.png" alt="New Sangam" width="400" height="400" /></li>
+            </ul>
             <p class="hero__eyebrow">House of Electric Hub · Sangam · New Sangam, Motihari</p>
             <h1>Latest Price Lists</h1>
             <p class="hero__sub">Open or download the brands' official price lists, all in one place.</p>
@@ -363,13 +372,13 @@
               </div>
             </div>
             <div class="x-tile">
-              <a class="x-cover" href="https://online.fliphtml5.com/klky/idbs/" target="_blank" rel="noopener" aria-label="Open GM Fans and Appliances catalogue"><img src="GM_FansAppliances.jpg" alt="Cover of the GM Fans and Appliances catalogue" width="340" height="480" loading="lazy" /></a>
+              <a class="x-cover" href="pdf/GM_FansAppliances.pdf" target="_blank" rel="noopener" aria-label="Open GM Fans and Appliances price list"><img src="GM_FansAppliances.jpg" alt="Cover of the GM Fans and Appliances price list" width="340" height="480" loading="lazy" /></a>
               <h3>Fans &amp; Appliances</h3>
               <p>Fan and appliance catalogue</p>
-              <p class="fineprint">Catalogue 2025</p>
+              <p class="fineprint">Price list Sept 2026</p>
               <div class="links">
-                <a class="btn" href="https://online.fliphtml5.com/klky/idbs/" target="_blank" rel="noopener">Open</a>
-                <a class="btn" href="https://fliphtml5.com/download/downloading.html?bookId=56680730&amp;type=1&amp;title=Fan%20Catalouge%202025%20Single%20Page_Web" target="_blank" rel="noopener" download>Download</a>
+                <a class="btn" href="pdf/GM_FansAppliances.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="pdf/GM_FansAppliances.pdf" download>Download</a>
               </div>
             </div>
             <div class="x-tile">
