@@ -44,10 +44,12 @@
       .x-cover img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform var(--dur-quick) var(--ease-out); }
       .x-cover:hover img { transform: scale(1.02); }
       .x-cover:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
-      .x-logos { display: flex; justify-content: center; align-items: center; gap: clamp(12px, 3vw, 24px); margin: 0 0 6px; padding: 0; list-style: none; }
-      .x-logos li { width: 88px; height: 88px; padding: 6px; border-radius: var(--r-m); background: #fff; box-shadow: var(--hark-shadow); overflow: hidden; }
-      .x-logos img { display: block; width: 100%; height: 100%; object-fit: contain; }
-      @media (max-width: 760px) { .x-logos li { width: 56px; height: 56px; padding: 4px; border-radius: var(--r-s); } }
+      .x-logos { --tile: 96px; justify-self: start; display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: flex-start; gap: 20px; margin: 0 0 6px; padding: 0; list-style: none; }
+      .x-logos li { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: var(--tile); }
+      .x-logos .x-logo__tile { box-sizing: border-box; display: flex; align-items: center; justify-content: center; width: var(--tile); height: var(--tile); padding: 12px; border-radius: var(--r-m); background: #fff; box-shadow: var(--hark-shadow); overflow: hidden; }
+      .x-logos img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+      .x-logos .x-logo__cap { font: var(--type-caption); color: var(--hero-text-muted, var(--text-secondary)); white-space: nowrap; text-align: center; }
+      @media (max-width: 760px) { .x-logos { --tile: 64px; gap: 12px; } .x-logos .x-logo__tile { padding: 8px; border-radius: var(--r-s); } .x-logos li { gap: 6px; } }
     </style>
   </head>
   <body>
@@ -57,13 +59,13 @@
         <section class="hero">
           <div class="hero__copy">
             <ul class="x-logos" aria-label="Our businesses">
-              <li><img src="logo_ehub.png" alt="Electric Hub" width="400" height="400" /></li>
-              <li><img src="logo_sangam.png" alt="Sangam" width="400" height="400" /></li>
-              <li><img src="logo_newsangam.png" alt="New Sangam" width="400" height="400" /></li>
+              <li><span class="x-logo__tile"><img src="logo_ehub.png" alt="Electric Hub logo" /></span><span class="x-logo__cap">Electric Hub</span></li>
+              <li><span class="x-logo__tile"><img src="logo_sangam.png" alt="Sangam logo" /></span><span class="x-logo__cap">Sangam</span></li>
+              <li><span class="x-logo__tile"><img src="logo_newsangam.png" alt="New Sangam logo" /></span><span class="x-logo__cap">New Sangam</span></li>
             </ul>
             <p class="hero__eyebrow">House of Electric Hub · Sangam · New Sangam, Motihari</p>
             <h1>Latest Price Lists</h1>
-            <p class="hero__sub">Open or download the brands' official price lists, all in one place.</p>
+            <p class="hero__sub">Open or download brand price lists and our own rate lists, all in one place.</p>
             <p class="hero__meta">Havells · GM Modular · Energypipe · Polycab · Motihari, Bihar</p>
           </div>
         </section>
@@ -73,6 +75,36 @@
           <input id="q" type="search" placeholder="Type a name, e.g. wires, MCB, fans" autocomplete="off" />
           <p class="fineprint" id="q-status" aria-live="polite"></p>
         </div>
+
+        <section class="section" id="ours" data-nav="Our lists">
+          <div class="head">
+            <p class="head__eyebrow">Electric Hub</p>
+            <h2>Our rate lists</h2>
+            <p class="head__sub">Rate lists issued by Electric Hub, Main Road, Motihari.</p>
+          </div>
+          <div class="cards">
+            <div class="x-tile">
+              <a class="x-cover" href="pdf/ElectricHub_GM_Cuba_DBP.pdf" target="_blank" rel="noopener" aria-label="Open GM Cuba Switches &amp; Plates (DBP) rate list"><img src="ElectricHub_GM_Cuba_DBP.jpg" alt="Cover of the Electric Hub GM Cuba Switches &amp; Plates (DBP) rate list" width="340" height="480" loading="lazy" /></a>
+              <h3>GM Cuba Switches &amp; Plates (DBP)</h3>
+              <p>Cuba switches, sockets, regulators and Meta, Plano and surface cover plates</p>
+              <p class="fineprint">Rate list October 2026</p>
+              <div class="links">
+                <a class="btn" href="pdf/ElectricHub_GM_Cuba_DBP.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="pdf/ElectricHub_GM_Cuba_DBP.pdf" download>Download</a>
+              </div>
+            </div>
+            <div class="x-tile">
+              <a class="x-cover" href="pdf/ElectricHub_GM_LED_DBP.pdf" target="_blank" rel="noopener" aria-label="Open GM LED (DBP) rate list"><img src="ElectricHub_GM_LED_DBP.jpg" alt="Cover of the Electric Hub GM LED (DBP) rate list" width="340" height="480" loading="lazy" /></a>
+              <h3>GM LED (DBP)</h3>
+              <p>GM LED lamps and lights, dealer prices by watt</p>
+              <p class="fineprint">Rate list October 2026</p>
+              <div class="links">
+                <a class="btn" href="pdf/ElectricHub_GM_LED_DBP.pdf" target="_blank" rel="noopener">Open</a>
+                <a class="btn" href="pdf/ElectricHub_GM_LED_DBP.pdf" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section class="section" id="havells" data-nav="Havells">
           <div class="head">
