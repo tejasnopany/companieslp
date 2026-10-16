@@ -104,6 +104,12 @@
         .x-date { padding: 3px 8px; }
         .x-tile .links { gap: 6px; }
       }
+      /* reference-style covers (instinct) */
+      .main .section > .cards { display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr)) !important; gap: 28px 24px !important; max-width: 1000px; }
+      .main .section > .cards > .x-tile { padding: 0 !important; background: transparent !important; box-shadow: none !important; border: 0 !important; overflow: visible !important; }
+      .x-cover { margin: 0 0 14px !important; padding: 0 !important; height: auto !important; aspect-ratio: 1 / 1.414 !important; width: 100% !important; border-radius: 8px !important; overflow: hidden !important; background: #eee !important; border: 0 !important; box-shadow: none !important; display:block !important; }
+      .x-cover img { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: top center !important; padding: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+      @media (max-width: 900px) { .main .section > .cards { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 20px 14px !important; } }
     </style>
   </head>
   <body>
