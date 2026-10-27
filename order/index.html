@@ -71,6 +71,26 @@ label{display:block;font-size:13px;color:var(--mut);margin:8px 0 3px}
 footer{font-size:12px;color:var(--mut);padding:10px 4px 20px;line-height:1.55}
 footer a{color:var(--red2)}
 .dates div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted #ddd;padding:2px 0}
+
+html,body{overflow-x:hidden}
+.nm,.sub{overflow-wrap:anywhere;word-break:normal}
+.chip{min-height:44px;padding:0 14px;font-size:15px}
+.step button{width:44px;height:44px;font-size:24px;touch-action:manipulation}
+.step input{width:48px;height:44px}
+.add{height:44px;min-width:76px;font-size:16px;touch-action:manipulation}
+.search input{min-height:46px}
+.f{min-height:46px}
+.btn{min-height:52px}
+.rm{min-height:44px;min-width:44px;font-size:14px}
+.back{min-height:44px}
+.line{flex-wrap:wrap}
+.line .info{flex:1 1 100%}
+.line .ctl{display:flex;align-items:center;gap:8px;width:100%;margin-top:6px}
+.line .ctl .amt{margin-left:auto;font-size:16px}
+main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+.card{min-height:76px}
+@media (max-width:370px){.card{padding:10px}.step button{width:44px}.step input{width:42px}.nm{font-size:14.5px}}
+#sentinel{height:1px}
 </style>
 </head>
 <body>
@@ -126,10 +146,9 @@ footer a{color:var(--red2)}
 <script id="logic">
 /* ===== order logic (pure; tested with node) ===== */
 var WA_NUMBER = '918310462391';
-var ENDPOINT = {
-  SG: 'https://formsubmit.co/ajax/motihari.sangam@gmail.com',
-  NS: 'https://formsubmit.co/ajax/newsangam.2025@gmail.com'
-};
+var ENDPOINT = 'https://api.web3forms.com/submit';
+/* public Web3Forms access keys (mail goes only to the inbox that owns the key) */
+var ACCESS_KEY = { SG: '6d2297d6-0617-47b6-a12a-eb0d9f57e172', NS: 'ceff9854-6508-4b83-bf38-5696449670f6' };
 var ROUTE_NAME = { SG: 'Sangam', NS: 'New Sangam' };
 function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
 function fmtDate(d){
@@ -167,9 +186,10 @@ function splitByRoute(lines){
 }
 function emailPayload(route, shop, lines, date, orderId){
   var p = {
-    _subject: 'New Havells order – ' + shop.shop,
-    _template: 'table',
-    _captcha: 'false',
+    access_key: ACCESS_KEY[route],
+    subject: 'New Havells order – ' + shop.shop,
+    from_name: 'Havells Order Page (' + shop.shop + ')',
+    botcheck: '',
     'Order for': ROUTE_NAME[route] + (route === 'NS' ? ' (Chimney / Cooktop / Hob)' : ' (Havells products)'),
     'Order ID': orderId,
     'Date': fmtDate(date),
@@ -183,7 +203,7 @@ function emailPayload(route, shop, lines, date, orderId){
   if (shop.note) p['Note'] = shop.note;
   return p;
 }
-if (typeof module !== 'undefined') module.exports = { lineText: lineText, waText: waText, waLink: waLink, splitByRoute: splitByRoute, emailPayload: emailPayload, total: total, inr: inr, ENDPOINT: ENDPOINT };
+if (typeof module !== 'undefined') module.exports = { lineText: lineText, waText: waText, waLink: waLink, splitByRoute: splitByRoute, emailPayload: emailPayload, total: total, inr: inr, ENDPOINT: ENDPOINT, ACCESS_KEY: ACCESS_KEY };
 </script>
 
 <script>
@@ -240,7 +260,8 @@ function render(){
   if (m.length > shown) h += '<button class="more" id="more">Show more (' + (m.length - shown) + ' left)</button>';
   if (!m.length) h = '<div class="empty">No item found. Try a shorter word or another category.</div>';
   $('list').innerHTML = h;
-  var mb = $('more'); if (mb) mb.onclick = function(){ shown += PAGE * 2; render(); };
+  var mb = $('more'); if (mb) { mb.onclick = function(){ shown += PAGE * 2; render(); };
+    if (window.IntersectionObserver) { var io = new IntersectionObserver(function(es){ if (es[0].isIntersecting) { io.disconnect(); shown += PAGE * 2; render(); } }, { rootMargin: '600px' }); io.observe(mb); } }
 }
 function setQty(k, n){
   n = Math.max(0, Math.min(9999, parseInt(n, 10) || 0));
@@ -299,7 +320,7 @@ function renderCart(){
   var L = cartLines();
   if (!L.length) { $('lines').innerHTML = '<div class="empty">Cart is empty.</div>'; $('tots').innerHTML = ''; updWa(); return; }
   $('lines').innerHTML = L.map(function(l){
-    return '<div class="line" data-k="' + esc(l.key) + '"><div class="info"><div class="nm" style="font-size:14px">' + esc(l.name) + '</div><div class="sub">' + esc(l.code || '') + ' @ ' + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + ' · <button class="rm">Remove</button></div></div>' + stepper(l.qty) + '<div class="amt">' + inr(l.rate * l.qty) + '</div></div>';
+    return '<div class="line" data-k="' + esc(l.key) + '"><div class="info"><div class="nm" style="font-size:14px">' + esc(l.name) + '</div><div class="sub">' + esc(l.code || '') + ' @ ' + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + '</div></div><div class="ctl">' + stepper(l.qty) + '<button class="rm">Remove</button><div class="amt">' + inr(l.rate * l.qty) + '</div></div></div>';
   }).join('');
   var g = splitByRoute(L), h = '';
   if (g.NS && g.SG) { h += '<div class="subt"><span>Havells items (Sangam)</span><span>' + inr(total(g.SG)) + '</span></div><div class="subt"><span>Chimney / Hob items (New Sangam)</span><span>' + inr(total(g.NS)) + '</span></div>'; }
@@ -325,11 +346,15 @@ $('place').onclick = function(){
   var oid = 'NS' + date.getFullYear().toString().slice(2) + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + date.getDate()).slice(-2) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
   var g = splitByRoute(L), routes = Object.keys(g).sort().reverse();
   var btn = this; btn.disabled = true; btn.textContent = 'Sending…';
-  Promise.all(routes.map(function(rt){
-    return fetch(ENDPOINT[rt], { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(emailPayload(rt, shop, g[rt], date, oid)) })
-      .then(function(r){ return r.json(); }).then(function(j){ return { rt: rt, ok: j && (j.success === true || j.success === 'true'), msg: j && j.message }; })
-      .catch(function(err){ return { rt: rt, ok: false, msg: String(err) }; });
-  })).then(function(res){
+  function send(rt){
+    var ctl = window.AbortController ? new AbortController() : null;
+    var t = setTimeout(function(){ if (ctl) ctl.abort(); }, 25000);
+    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(emailPayload(rt, shop, g[rt], date, oid)), signal: ctl ? ctl.signal : undefined })
+      .then(function(r){ return r.json(); }).then(function(j){ clearTimeout(t); return { rt: rt, ok: j && (j.success === true || j.success === 'true'), msg: j && j.message }; })
+      .catch(function(err){ clearTimeout(t); return { rt: rt, ok: false, msg: 'network error' }; });
+  }
+  var res = [];
+  routes.reduce(function(pr, rt){ return pr.then(function(){ return send(rt).then(function(x){ res.push(x); }); }); }, Promise.resolve()).then(function(){
     btn.disabled = false; btn.textContent = 'Place Order';
     var bad = res.filter(function(x){ return !x.ok; });
     var wl = waLink(shop, L, date);
