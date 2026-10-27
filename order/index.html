@@ -361,7 +361,7 @@ if (typeof module !== 'undefined') module.exports = { BRAND: BRAND, ROUTE_UI: RO
 /* ===== search, variant & recommendation logic (pure; tested with node) ===== */
 /* row: [cat, name, code, lp, rate, group, unit, rank, img, badge, facets{t,x,y,b}, extra, pack, fam, attrs]
    fam: [name, cat, dims, rank, badge, img, [rowIdx], rangeLabel] */
-var CAT_SYN = {'Fans':'fan fans pankha','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer water heater','Air Coolers':'cooler','Pumps':'pump motor','Chimneys':'chimney kitchen','Cooktops & Hobs':'gas stove chulha cooktop hob','Wires & Cables':'wire wires cable','MCB, RCCB & DB':'mcb db switchgear','Switches':'switch switches modular','LED Lighting':'led light','Professional Luminaires':'light luminaire'};
+var CAT_SYN = {'Fans':'fan fans pankha','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer water heater','Air Coolers':'cooler','Pumps':'pump motor','Chimneys':'chimney kitchen hood','Water Purifiers':'water purifier ro uv uf filter','Cooktops & Hobs':'gas stove chulha cooktop hob','Wires & Cables':'wire wires cable','MCB, RCCB & DB':'mcb db switchgear','Switches':'switch switches modular','LED Lighting':'led light','Professional Luminaires':'light luminaire'};
 function norm(s){
   s = String(s || '').toLowerCase()
     .replace(/[é]/g, 'e').replace(/’|'/g, '')
@@ -427,12 +427,13 @@ function sizeKey(r, D){
           c === 'Chimneys' ? n.match(/(\d+) cm/) : c === 'Cooktops & Hobs' ? n.match(/(\d) Burner/) : c === 'LED Lighting' ? n.match(/(\d+(?:\.\d+)?)\s*W\b/) : null;
   return m ? m[1] : '';
 }
-var UPSELL_CATS = { 'Fans': 1, 'Water Heaters': 1, 'Small Appliances & Heaters': 1, 'Air Coolers': 1, 'Chimneys': 1, 'Cooktops & Hobs': 1, 'Personal Grooming': 1, 'LED Lighting': 1 };
+var UPSELL_CATS = { 'Fans': 1, 'Water Heaters': 1, 'Small Appliances & Heaters': 1, 'Air Coolers': 1, 'Chimneys': 1, 'Cooktops & Hobs': 1, 'Personal Grooming': 1, 'LED Lighting': 1, 'Water Purifiers': 1 };
 function upsell(i, D, max){
   var r = D.p[i], c = D.cats[r[0]]; if (!UPSELL_CATS[c]) return [];
   var f = r[10] || {}, sk = sizeKey(r, D), out = [], fams = {};
   var tOk = function(t){
     if (c === 'Fans' && f.t === 'Ceiling') return t === 'BLDC ceiling' || t === 'Ceiling';
+    if (c === 'Chimneys') return !t || !f.t || t === f.t;   /* same shape when both are known */
     return t === f.t;
   };
   var cand = [];
@@ -462,8 +463,9 @@ function xsRules(r, D){
   if (c === 'Fans') R = [is('Switches', function(x, g){ return g.x === 'Fan regulator'; }), is('LED Lighting', function(x, g){ return g.t === 'Bulb / lamp'; }), is('Switches', function(x, g){ return g.x === 'GI box (concealed)' || g.x === 'Surface box'; })];
   else if (c === 'Water Heaters') R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB' && /\b(20|25|32) A\b/.test(x[1]); }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB' && /30 mA/.test(x[1]); }), houseWire(['4 sq mm'])];
   else if (c === 'Pumps') R = [is('Wires & Cables', function(x, g){ return g.t === 'Flat submersible'; }), is('Switches', function(x){ return /Motor Starter/.test(x[1]); }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB' && / DP /.test(' ' + x[1] + ' '); })];
-  else if (c === 'Chimneys') R = [is('Cooktops & Hobs')];
-  else if (c === 'Cooktops & Hobs') R = [is('Chimneys')];
+  else if (c === 'Chimneys') R = [is('Cooktops & Hobs'), is('Water Purifiers', function(x, g){ return g.t === 'Domestic'; })];
+  else if (c === 'Cooktops & Hobs') R = [is('Chimneys'), is('Water Purifiers', function(x, g){ return g.t === 'Domestic'; })];
+  else if (c === 'Water Purifiers' && f.t === 'Domestic') R = [is('Chimneys'), is('Cooktops & Hobs')];
   else if (c === 'MCB, RCCB & DB' && (f.t === 'MCB' || f.t === 'RCCB' || f.t === 'RCBO')) R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'Distribution board'; }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB' && f.t !== 'RCCB'; })];
   else if (c === 'MCB, RCCB & DB' && f.t === 'Distribution board') R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB'; }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB'; })];
   else if (c === 'Switches' && f.x !== 'Plate' && f.x !== 'GI box (concealed)' && f.x !== 'Surface box') R = [is('Switches', function(x, g){ return g.t === f.t && g.x === 'Plate'; }), is('Switches', function(x, g){ return g.x === 'GI box (concealed)'; }), houseWire(['1 sq mm', '1.5 sq mm'])];
@@ -528,11 +530,15 @@ var IC = {
   'Changeover & Switch Fuse': '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 15l6-6"/><circle cx="8.5" cy="9" r="1"/><circle cx="15.5" cy="15" r="1"/>',
   'Switches': '<rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="7" width="6" height="10" rx="1.5"/><path d="M12 9.5v2"/>',
   'LED Lighting': '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
+  'Water Purifiers': '<rect x="6" y="2.5" width="12" height="15" rx="2.5"/><path d="M12 6.5c-1.6 2-2.4 3.3-2.4 4.4a2.4 2.4 0 0 0 4.8 0c0-1.1-.8-2.4-2.4-4.4z"/><path d="M12 17.5V20M9 21.5h6"/>',
   'Professional Luminaires': '<rect x="3" y="7.5" width="18" height="5" rx="1"/><path d="M12 3.5v4M6.5 15.5l-1.5 4M12 15.5v4.5M17.5 15.5l1.5 4"/>'
 };
 var TINT = ['#fff1e6','#eef6ff','#fff0f0','#e9f9f5','#eef3ff','#f3f0ff','#fff6e5','#fdeef7','#fff4e0','#eef8ee','#f0f4f8','#f1f1f7','#f1f1f7','#fffbe6','#eef7fb','#f2f9e9'];
 var TFG  = ['#c2410c','#1d63c1','#c81e1e','#0f8a6a','#3655c9','#6d46c7','#a86200','#b8237a','#b45309','#2f7d32','#3d5873','#4b4b6b','#4b4b6b','#a17700','#1a7896','#4d7c0f'];
-var SHORT = {'Fans':'Fans','Small Appliances & Heaters':'Appliances','Water Heaters':'Water heaters','Air Coolers':'Coolers','Pumps':'Pumps','Chimneys':'Chimneys','Cooktops & Hobs':'Hobs & cooktops','Personal Grooming':'Grooming','Wires & Cables':'Wires','MCB, RCCB & DB':'MCB & DB','Changeover & Switch Fuse':'Changeover','Switches':'Switches','LED Lighting':'LED lights','Professional Luminaires':'Pro lighting'};
+var SHORT = {'Fans':'Fans','Small Appliances & Heaters':'Appliances','Water Heaters':'Water heaters','Air Coolers':'Coolers','Pumps':'Pumps','Chimneys':'Chimneys','Cooktops & Hobs':'Hobs & cooktops','Personal Grooming':'Grooming','Wires & Cables':'Wires','MCB, RCCB & DB':'MCB & DB','Changeover & Switch Fuse':'Changeover','Switches':'Switches','LED Lighting':'LED lights','Professional Luminaires':'Pro lighting','Water Purifiers':'Water purifiers'};
+/* chip / list order: Water Purifiers sits next to the other kitchen products (data index stays 15 so saved carts keep working) */
+function catOrder(){ var o = CATS.map(function(_, i){ return i; }), w = CATS.indexOf('Water Purifiers'), h = CATS.indexOf('Cooktops & Hobs'); if (w > h && h >= 0) { o.splice(w, 1); o.splice(h + 1, 0, w); } return o; }
+function lpF(n){ return n % 1 ? '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : inr(n); }
 function icon(name){ return P + (IC[name] || IC.all) + '</svg>'; }
 function picH(img, c, cls){
   if (img) return '<div class="pic' + (cls || '') + '"><img src="' + (window.IMGB || 'img/') + img + '.webp" alt="" loading="lazy" decoding="async" width="72" height="72" onerror="this.parentNode.classList.add(\'ic\');this.outerHTML=window.__ic(' + c + ')"></div>';
@@ -559,7 +565,7 @@ fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }
 
 function chips(){
   var h = '<button class="chip on" data-c="-1" role="tab">' + icon('all') + 'All</button>';
-  CATS.forEach(function(c, i){ if (c) h += '<button class="chip" data-c="' + i + '" role="tab">' + icon(c) + esc(SHORT[c] || c) + '</button>'; });
+  catOrder().forEach(function(i){ var c = CATS[i]; if (c) h += '<button class="chip" data-c="' + i + '" role="tab">' + icon(c) + esc(SHORT[c] || c) + '</button>'; });
   $('chips').innerHTML = h;
   $('chips').onclick = function(e){
     var b = e.target.closest('.chip'); if (!b) return;
@@ -615,7 +621,7 @@ function card(g){
     return '<div class="card" data-f="' + g.f + '" data-v="' + r.i + '" data-k="' + esc(k) + '">' + pic(r) +
       '<div class="info">' + badgeH(r[9]) + '<div class="nm">' + esc(r[1]) + '</div>' +
       '<div class="sub">' + esc([r[2], cleanGrp(r)].filter(Boolean).join(' · ')) + '</div></div>' +
-      '<div class="bot"><div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + inr(r[3]) + '</span><span class="off">' + off + '% off</span>' +
+      '<div class="bot"><div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + lpF(r[3]) + '</span><span class="off">' + off + '% off</span>' +
       (r[6] ? '<span class="unit">' + esc(r[6]) + '</span>' : '') + '</div>' +
       (n ? stepper(n) : '<button class="add" data-a="add" aria-label="Add ' + esc(r[1]) + '">+ Add</button>') + '</div></div>';
   }
@@ -780,7 +786,7 @@ function drawProd(){
   }
   var nud = packNudge(r, PS.qty);
   h += '<div class="sel"><div class="nm" style="font-size:14px">' + esc(r[1]) + '</div><div class="code">' + (r[2] ? 'Code ' + esc(r[2]) : '') + (r[6] ? ' · ' + esc(r[6]) : '') + '</div>' +
-    '<div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + inr(r[3]) + '</span><span class="off">' + off + '% off</span></div>' +
+    '<div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + lpF(r[3]) + '</span><span class="off">' + off + '% off</span></div>' +
     (r[12] > 1 ? '<div class="pk">Box of ' + r[12] + (nud ? ' · add ' + nud.add + ' more for a full box (' + inr(nud.amt) + ') <button class="mini" data-pk="' + nud.to + '" style="margin-left:4px">Make ' + nud.to + '</button>' : '') + '</div>' : '') +
     '<div class="addrow"><div class="step"><button data-q="-1" aria-label="Less">−</button><input id="pq" inputmode="numeric" pattern="[0-9]*" value="' + PS.qty + '" aria-label="Quantity"><button data-q="1" aria-label="More">+</button></div>' +
     '<button class="btn p" id="pAdd">' + (inC ? (inC === PS.qty ? '✓ In cart (' + inC + ')' : 'Update cart') : 'Add to cart') + '</button></div></div>';
@@ -939,7 +945,7 @@ $('newOrder').onclick = function(){ cart = {}; save('ns_cart', cart); show('vSho
 
 function foot(){
   var h = '<b>Price lists used (effective date)</b><div class="dates">';
-  CATS.forEach(function(c){ if (c) h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
+  catOrder().forEach(function(i){ var c = CATS[i]; if (c) h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
   h += '</div><p>Your Rate = List Price − 35% (Chimneys, Cooktops &amp; Hobs: − 30%). Rates incl. GST, subject to change. Final bill as per stock and current price list. “Best seller” / “Popular” = our counter’s top-selling items. Product photos: havells.com.</p>' +
     '<p><a href="../">← All price lists</a> · Havells Galaxy – Sangam, Bank Road, Motihari</p>';
   $('foot').innerHTML = h;
