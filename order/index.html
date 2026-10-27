@@ -85,8 +85,8 @@ html,body{overflow-x:hidden}
 .back{min-height:44px}
 .line{flex-wrap:wrap}
 .line .info{flex:1 1 100%}
-.line .ctl{display:flex;align-items:center;gap:8px;width:100%;margin-top:6px}
-.line .ctl .amt{margin-left:auto;font-size:16px}
+.line .ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px;width:100%;margin-top:6px}
+.line .ctl .amt{margin-left:auto;font-size:16px;min-width:0}
 main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 .card{min-height:76px}
 @media (max-width:370px){.card{padding:10px}.step button{width:44px}.step input{width:42px}.nm{font-size:14.5px}}
