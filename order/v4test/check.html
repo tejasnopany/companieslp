@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Sheet check</title>
+<style>body{margin:8px;font:13px sans-serif;background:#ddd}.row{display:flex;gap:10px;align-items:flex-start}
+.ph{background:#000;padding:6px;border-radius:14px}.ph b{color:#fff;display:block;text-align:center;padding:2px}iframe{border:0;background:#fff;display:block;height:740px}
+#rep{background:#fff;padding:8px;white-space:pre-wrap;font:12px monospace;margin-bottom:8px}</style></head><body>
+<div id="rep">running checks… (about 12 s)</div>
+<div class="row" id="r1"></div>
+<script>
+localStorage.removeItem('ns_cart');
+var W=[360,390], fr=[], log={};
+function mk(w){var d=document.createElement('div');d.className='ph';d.innerHTML='<b>'+w+'px</b>';var f=document.createElement('iframe');f.style.width=w+'px';f.src='./index.html';d.appendChild(f);document.getElementById('r1').appendChild(d);return f;}
+fr=W.map(mk);
+function L(w,s){(log[w]=log[w]||[]).push(s);}
+function vis(d,id){var e=d.getElementById(id);if(!e)return false;var r=e.getBoundingClientRect();return e.classList.contains('on')&&!e.classList.contains('hide')&&r.top<d.documentElement.clientHeight&&r.height>100;}
+function small(d,root){var s=[];root.querySelectorAll('button,input').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.height&&r.height<44)s.push((b.className||b.id||b.tagName)+' '+Math.round(r.width)+'x'+Math.round(r.height));});return s;}
+function tapInside(d,el){var r=el.getBoundingClientRect();var x=r.left+r.width/2,y=r.top+r.height/2;var hit=d.elementFromPoint(x,y);return hit===el||el.contains(hit);}
+function step(i,fn,ms){setTimeout(function(){fr.forEach(function(f){var w=f.style.width;try{fn(f.contentDocument,f.contentWindow,w);}catch(e){L(w,'ERROR '+e);}});},ms);}
+// 1) filter sheet: pick Chimneys chip, open filter sheet, tap a Shape option, apply
+step(1,function(d,win,w){var c=[].find.call(d.querySelectorAll('.chip'),function(b){return /Chimneys/.test(b.textContent);});c.click();
+  var wpChip=[].find.call(d.querySelectorAll('.chip'),function(b){return /Water purifiers/.test(b.textContent);});L(w,'Water purifiers chip present: '+!!wpChip);
+  d.getElementById('fbtn').click();},2500);
+step(2,function(d,win,w){var ok=vis(d,'sheet');L(w,'filter sheet opens: '+(ok?'YES':'NO'));
+  var sh=d.getElementById('sheet');var hs=[].map.call(sh.querySelectorAll('h3'),function(h){return h.textContent;});L(w,'filter groups: '+hs.join(', '));
+  var opt=[].find.call(sh.querySelectorAll('.opt[data-g="t"]'),function(b){return /Curved/.test(b.textContent);});
+  L(w,'Shape "Curved" option tappable (not covered): '+(opt?tapInside(d,opt):'missing'));
+  if(opt)opt.click();
+  var sm=small(d,sh);L(w,'filter sheet targets <44px: '+(sm.length?sm.slice(0,6).join(', '):'none'));
+  var a=d.getElementById('shA');L(w,'apply button: "'+a.textContent+'" tappable: '+tapInside(d,a));a.click();},4200);
+step(3,function(d,win,w){L(w,'filter sheet closed after apply: '+(!vis(d,'sheet')?'YES':'NO'));
+  var cards=d.querySelectorAll('#list .card');var names=[].slice.call(cards,0,40).map(function(c){return c.textContent;});
+  L(w,'cards after Curved filter: '+cards.length+' | meta: '+d.getElementById('meta').textContent);
+  var ef=d.getElementById('act');L(w,'active-filter pill row visible: '+(ef&&!ef.classList.contains('hide')));
+  // 2) variant sheet: open Canis Neo card (3 sizes)
+  var card=[].find.call(d.querySelectorAll('#list .card'),function(c){return /Canis Neo Chimney/.test(c.textContent);});
+  L(w,'Canis Neo card found: '+!!card);var btn=card&&(card.querySelector('.choose')||card.querySelector('button')||card);btn.click();},6000);
+step(4,function(d,win,w){var ok=vis(d,'psheet');L(w,'variant sheet opens: '+(ok?'YES':'NO'));
+  var ps=d.getElementById('psheet');var vcs=ps.querySelectorAll('.vc');L(w,'size chips: '+[].map.call(vcs,function(b){return b.textContent+(b.classList.contains('on')?'*':'');}).join(' / '));
+  var lp=ps.querySelector('.lp');L(w,'struck LP shown: '+(lp?lp.textContent:'none')+' | rate: '+(ps.querySelector('.rt')||{}).textContent);
+  var b90=[].find.call(vcs,function(b){return /90/.test(b.textContent);});L(w,'90 cm chip tappable: '+(b90?tapInside(d,b90):'missing'));if(b90)b90.click();
+  var sm=small(d,ps);L(w,'variant sheet targets <44px: '+(sm.length?sm.slice(0,6).join(', '):'none'));},7800);
+step(5,function(d,win,w){var ps=d.getElementById('psheet');var on=ps.querySelector('.vc.on');L(w,'after tap selected: '+(on?on.textContent:'?')+' | code shown: '+(/GHKCNBTK0/.test(ps.textContent)?'GHKCNBTK0 ✓':'not updated'));
+  var add=d.getElementById('pAdd');L(w,'Add button tappable: '+tapInside(d,add));add.click();},9200);
+step(6,function(d,win,w){var c=JSON.parse(win.localStorage.getItem('ns_cart')||'{}');L(w,'cart after Add: '+JSON.stringify(c));
+  var ps=d.getElementById('psheet');var x=d.getElementById('pdX');if(x)x.click();},10600);
+step(7,function(d,win,w){L(w,'variant sheet closes: '+(!vis(d,'psheet')?'YES':'NO')+' | page width '+d.documentElement.scrollWidth+'/'+d.documentElement.clientWidth);},11800);
+setTimeout(function(){var o=[];W.forEach(function(w){o.push('=== '+w+'px ===\n'+(log[w+'px']||[]).join('\n'));});document.getElementById('rep').textContent=o.join('\n\n');},12500);
+</script></body></html>
