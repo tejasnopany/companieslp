@@ -91,6 +91,10 @@ main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
 .card{min-height:76px}
 @media (max-width:370px){.card{padding:10px}.step button{width:44px}.step input{width:42px}.nm{font-size:14.5px}}
 #sentinel{height:1px}
+footer a{display:inline-block;padding:12px 4px;min-height:44px}
+#shopTop{position:relative}
+#shopTop:after{content:'';position:absolute;right:-12px;bottom:0;width:28px;height:52px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff);pointer-events:none}
+main{padding-bottom:calc(110px + env(safe-area-inset-bottom))}
 </style>
 </head>
 <body>
@@ -223,6 +227,7 @@ fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }
   Object.keys(cart).forEach(function(k){ if (!BYKEY[k]) delete cart[k]; });
   chips(); render(); bar(); foot();
   if (location.hash === '#cart' && count()) showCart();
+  if (location.hash === '#demo-done') { $('wa2').href = '#'; $('doneMsg').innerHTML = 'Order ID <b>NS261027-DEMO</b> · ₹32,949 (incl. GST)<br>✓ Sent to Sangam<br>✓ Sent to New Sangam'; show('vDone'); }
 }).catch(function(){ $('meta').textContent = 'Could not load price list. Please check internet and reload.'; });
 
 function chips(){
