@@ -155,6 +155,61 @@ footer{font-size:12px;color:var(--mut);padding:14px 4px 20px;line-height:1.55}
 footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px;font-weight:600}
 .dates div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted #ddd;padding:3px 0}
 .dates div span:last-child{text-align:right}
+
+/* v3: families, product sheet, upsell / cross-sell */
+.card{cursor:pointer}
+.choose{flex:none;height:44px;min-width:96px;padding:0 14px;border:0;background:var(--red);color:#fff;border-radius:12px;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:4px}
+.choose:active{transform:scale(.96)}
+.from{font-size:12px;color:var(--mut);font-weight:600;margin-right:3px}
+.rng{display:inline-block;font-size:12px;color:#3d3d44;background:#f1f1f4;border-radius:6px;padding:2px 7px;margin-top:4px}
+.incart{display:inline-block;font-size:11.5px;color:var(--ok);font-weight:700;margin-left:6px}
+.pd .pdh{display:flex;gap:12px;align-items:flex-start;padding:4px 0 10px}
+.pd .pdh .pic{width:96px;height:96px;flex:none}
+.pd .pdh .nm{font-size:16.5px}
+.vd h3{font-size:13px;margin:12px 0 7px;color:var(--mut);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.vd .opts{gap:7px}
+.vc{min-height:44px;padding:0 14px;border:1.5px solid #dcdce1;border-radius:11px;background:#fff;font-size:14.5px;font-weight:600}
+.vc.on{border-color:var(--red);background:var(--redbg);color:var(--red2)}
+.vc.na{opacity:.45;border-style:dashed}
+.sel{margin-top:12px;background:#fafafb;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.sel .code{font-size:12.5px;color:var(--mut);overflow-wrap:anywhere}
+.sel .pr{margin-top:4px}
+.sel .pk{font-size:12.5px;color:#5b5b63;margin-top:3px}
+.addrow{display:flex;gap:10px;align-items:center;margin-top:10px}
+.addrow .step{background:var(--ink)}
+.addrow .btn{margin:0;flex:1}
+.blk{margin-top:16px}
+.blk h3{font-size:14px;margin:0 0 8px;display:flex;align-items:center;gap:6px}
+.up{display:flex;align-items:center;gap:10px;border:1px solid #f3d38a;background:#fffaf0;border-radius:12px;padding:8px 10px;margin-bottom:7px}
+.up .pic{width:48px;height:48px;border-radius:9px;flex:none}
+.up .pic.ic svg{width:24px;height:24px}
+.up .t{flex:1;min-width:0;font-size:13.5px;line-height:1.3}
+.up .t b{display:block;font-size:13.5px;overflow-wrap:anywhere}
+.up .t span{color:var(--red2);font-weight:800}
+.up .t em{font-style:normal;color:#8a5a00;font-weight:700;font-size:12px}
+.mini{flex:none;min-height:40px;padding:0 12px;border-radius:10px;border:1.5px solid var(--red);background:#fff;color:var(--red);font-weight:700;font-size:14px}
+.mini.done{border-color:var(--ok);color:var(--ok)}
+.xs{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.xs::-webkit-scrollbar{display:none}
+.xc{flex:none;width:142px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:5px}
+.xc .pic{width:100%;height:84px;border-radius:9px}
+.xc .pic.ic svg{width:30px;height:30px}
+.xc .n{font-size:12.5px;font-weight:600;line-height:1.25;height:3.75em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.xc .p{font-size:14px;font-weight:800;color:var(--red2)}
+.xc .mini{width:100%}
+.sug{position:fixed;left:10px;right:10px;bottom:calc(76px + max(10px,env(safe-area-inset-bottom)));z-index:29;max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:8px 8px 8px 10px;display:flex;align-items:center;gap:9px;transform:translateY(16px);opacity:0;transition:transform .2s,opacity .2s;pointer-events:none}
+.sug.on{transform:none;opacity:1;pointer-events:auto}
+.sug .pic{width:44px;height:44px;border-radius:9px;flex:none}
+.sug .pic.ic svg{width:22px;height:22px}
+.sug .t{flex:1;min-width:0;font-size:12.5px;line-height:1.25}
+.sug .t small{display:block;color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.sug .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
+.sug .x{flex:none;width:36px;height:44px;border:0;background:none;color:var(--mut);font-size:20px}
+.nudge{grid-column:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:#5b5b63;background:#f6f6f8;border-radius:10px;padding:6px 8px;margin-top:2px}
+.nudge button{min-height:36px;padding:0 10px;border-radius:9px;border:1px solid #c9c9cf;background:#fff;font-weight:700;font-size:13px}
+.cx{margin:0 0 10px}
+.cx h2{font-size:16px;margin:2px 2px 8px}
+
 @media (max-width:370px){.card{grid-template-columns:62px 1fr;gap:4px 9px;padding:9px}.pic{width:62px;height:62px}.nm{font-size:14.5px}.add{min-width:74px;padding:0 12px}.step input{width:40px}.fbtn span{display:none}}
 @media (min-width:640px){.card{grid-template-columns:88px 1fr}.pic{width:88px;height:88px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -169,7 +224,7 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
   <div class="srow">
     <div class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search name or model code…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Search products">
+      <input id="q" type="search" placeholder="Search: 30w adore, mcb 32a, 4 sqmm…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Search products">
       <button class="x" id="qx" aria-label="Clear search">×</button>
     </div>
     <button class="fbtn" id="fbtn" aria-label="Filters and sort"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><span>Filter</span><b class="n hide" id="fn">0</b></button>
@@ -187,6 +242,7 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
   <section id="vCart" class="hide">
     <button class="back" id="backShop">← Add more items</button>
     <div class="sec"><h2>Your order</h2><div id="lines"></div><div id="tots"></div></div>
+    <div class="cx" id="cx"></div>
     <div class="sec">
       <h2>Shop details</h2>
       <label for="shop">Shop name *</label><input class="f" id="shop" autocomplete="organization">
@@ -216,12 +272,18 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
 
 <button class="bar hide" id="bar" aria-label="View cart"><span class="bi"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20.5" r="1"/><circle cx="17" cy="20.5" r="1"/></svg><b id="bCount">0</b></span><span class="bt"><b id="bTotal">₹0</b><small>incl. GST</small></span><span class="go">View cart →</span></button>
 <div class="toast" id="toast"></div>
+<div class="sug" id="sug" role="status"></div>
 <div class="ov hide" id="ov"></div>
 <div class="sheet hide" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shT">
   <div class="grab"></div>
   <div class="sh"><h2 id="shT">Filter &amp; sort</h2><button id="shClr">Clear all</button><button class="cl" id="shX" aria-label="Close">×</button></div>
   <div class="sb" id="sb"></div>
   <div class="sf"><button class="c" id="shC">Cancel</button><button class="a" id="shA">Show items</button></div>
+</div>
+<div class="sheet pd hide" id="psheet" role="dialog" aria-modal="true" aria-labelledby="pdT">
+  <div class="grab"></div>
+  <div class="sh"><h2 id="pdT">Choose option</h2><button class="cl" id="pdX" aria-label="Close">×</button></div>
+  <div class="sb" id="pdb"></div>
 </div>
 
 <script>window.IMGB="../img/";</script><script id="logic">
@@ -293,72 +355,209 @@ function emailPayload(route, shop, lines, date, orderId){
 if (typeof module !== 'undefined') module.exports = { BRAND: BRAND, ROUTE_UI: ROUTE_UI, orderId: orderId, lineText: lineText, waText: waText, waLink: waLink, splitByRoute: splitByRoute, emailPayload: emailPayload, total: total, inr: inr, ENDPOINT: ENDPOINT, ACCESS_KEY: ACCESS_KEY };
 
 </script>
+<script id="core">
+/* ===== search, variant & recommendation logic (pure; tested with node) ===== */
+/* row: [cat, name, code, lp, rate, group, unit, rank, img, badge, facets{t,x,y,b}, extra, pack, fam, attrs]
+   fam: [name, cat, dims, rank, badge, img, [rowIdx], rangeLabel] */
+var CAT_SYN = {'Fans':'fan fans pankha','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer water heater','Air Coolers':'cooler','Pumps':'pump motor','Chimneys':'chimney kitchen','Cooktops & Hobs':'gas stove chulha cooktop hob','Wires & Cables':'wire wires cable','MCB, RCCB & DB':'mcb db switchgear','Switches':'switch switches modular','LED Lighting':'led light','Professional Luminaires':'light luminaire'};
+function norm(s){
+  s = String(s || '').toLowerCase()
+    .replace(/[é]/g, 'e').replace(/’|'/g, '')
+    .replace(/\b([a-z])-(\d)/g, '$1$2')                      /* b-22 -> b22, e-27 -> e27 */
+    .replace(/(\d)\.0+(?!\d)/g, '$1').replace(/(\d\.\d*?)0+(?!\d)/g, '$1')   /* 4.00 -> 4, 1.50 -> 1.5 */
+    .replace(/sq\.?\s*mm|sqmm|mm2|mm²/g, 'sqmm')
+    .replace(/(\d)\s*(?:watts?|w)\b/g, '$1w')
+    .replace(/(\d)\s*(?:amps?|ax|a)\b/g, '$1a')
+    .replace(/(\d)\s*(?:litres?|liters?|ltrs?|l)\b/g, '$1l')
+    .replace(/(\d)\s*(sqmm|mm|cm|hp|kw|ma|k|m|n|v|jar|star)\b/g, '$1$2')
+    .replace(/(\d)\s*(?:burner|b)\b/g, '$1burner')
+    .replace(/["“”]/g, ' in ')
+    .replace(/[^a-z0-9.+]+/g, ' ').replace(/\s\.|\.\s|\.$/g, ' ');
+  return s.replace(/\s+/g, ' ').trim();
+}
+var ALIAS = { bulb: 'lamp', bulbs: 'lamp', lamps: 'lamp', geyser: 'geyser', wires: 'wire', fans: 'fan', switches: 'switch', sockets: 'socket', plates: 'plate', '48in': '1200mm', '56in': '1400mm', '36in': '900mm', '24in': '600mm' };
+function qtokens(q){ return norm(q).split(' ').filter(Boolean).map(function(t){ return ALIAS[t] || t; }); }
+function hayOf(r, D){
+  var f = r[10] || {}, fam = D.f[r[13]], c = D.cats[r[0]];
+  var grp = (String(r[5] || '').match(/\d+\s*W\b/g) || []).length > 1 ? '' : r[5];   /* skip garbled multi-wattage table headers */
+  var s = [r[1], r[2], grp, c, CAT_SYN[c], f.t, f.x, f.y, f.b, r[11], fam ? fam[0] : '', (r[14] || []).join(' ')].join(' ');
+  if (/\b(b22|e27|e14|lamp|bulb)\b/i.test(s)) s += ' lamp bulb';
+  if (/sq mm/.test(f.x || '')) s += ' ' + f.x.replace(' sq mm', 'mm');
+  if (/lifeline|hrfr/i.test(s) && /90 m/.test(r[6] || '')) s += ' house wire lifeline';
+  return ' ' + norm(s) + ' ';
+}
+function tokOk(hay, t){
+  /* token must start a word in the haystack; plain words of 3+ letters may also match inside a word; a model code may match anywhere */
+  if (hay.indexOf(' ' + t) >= 0) return true;
+  if (/^[a-z]{3,}$/.test(t) && hay.indexOf(t) >= 0) return true;
+  if (/^[a-z0-9]{6,}$/.test(t) && /\d/.test(t) && /[a-z]/.test(t) && hay.indexOf(t) >= 0) return true;
+  return false;
+}
+function ownHay(r){ return r.oh || (r.oh = ' ' + norm([r[1], r[2], (r[14] || []).join(' ')].join(' ')) + ' '); }
+function score(r, toks){
+  var h = ownHay(r), s = 0;
+  for (var i = 0; i < toks.length; i++) {
+    var t = toks[i]; if (!tokOk(h, t)) continue; s++;
+    if (/^\d+(\.\d+)?$/.test(t) && new RegExp(' ' + t.replace('.', '\\.') + '[a-z]* ').test(h)) s += 0.5;   /* "30" -> 30w, not 3000k */
+    if (h.indexOf(' ' + t + ' ') >= 0) s += 0.25;
+  }
+  return s;
+}
+function matchRow(hay, toks){ for (var i = 0; i < toks.length; i++) if (!tokOk(hay, toks[i])) return false; return true; }
+
+/* ---------- variants ---------- */
+function pickVariant(fam, rows, sel, j, v){
+  /* choose the variant with attrs[j]==v that keeps as many other selected values as possible */
+  var best = null, bs = -1;
+  fam[6].forEach(function(i){
+    var a = rows[i][14]; if (a[j] !== v) return;
+    var s = 0; for (var k = 0; k < a.length; k++) if (k !== j && a[k] === sel[k]) s++;
+    if (s > bs || (s === bs && rows[i][7] < rows[best][7])) { bs = s; best = i; }
+  });
+  return best;
+}
+
+/* ---------- recommendations ---------- */
+function CI(D, name){ return D.cats.indexOf(name); }
+function sizeKey(r, D){
+  var c = D.cats[r[0]], n = r[1];
+  var m = c === 'Fans' ? n.match(/(\d{3,4}) mm/) : c === 'Water Heaters' ? n.match(/(\d+)\s*L\b/) : c === 'Air Coolers' ? n.match(/(\d+)\s*L\b/) :
+          c === 'Chimneys' ? n.match(/(\d+) cm/) : c === 'Cooktops & Hobs' ? n.match(/(\d) Burner/) : c === 'LED Lighting' ? n.match(/(\d+(?:\.\d+)?)\s*W\b/) : null;
+  return m ? m[1] : '';
+}
+var UPSELL_CATS = { 'Fans': 1, 'Water Heaters': 1, 'Small Appliances & Heaters': 1, 'Air Coolers': 1, 'Chimneys': 1, 'Cooktops & Hobs': 1, 'Personal Grooming': 1, 'LED Lighting': 1 };
+function upsell(i, D, max){
+  var r = D.p[i], c = D.cats[r[0]]; if (!UPSELL_CATS[c]) return [];
+  var f = r[10] || {}, sk = sizeKey(r, D), out = [], fams = {};
+  var tOk = function(t){
+    if (c === 'Fans' && f.t === 'Ceiling') return t === 'BLDC ceiling' || t === 'Ceiling';
+    return t === f.t;
+  };
+  var cand = [];
+  D.p.forEach(function(x, k){
+    if (x[0] !== r[0] || x[13] === r[13]) return;
+    var g = x[10] || {};
+    if (!tOk(g.t)) return;
+    if (c === 'Small Appliances & Heaters' || c === 'Personal Grooming') { if (x[5] !== r[5]) return; }
+    else if (sk && sizeKey(x, D) !== sk) return;
+    if (!(x[4] > r[4] * 1.08 && x[4] < r[4] * 2.3)) return;
+    cand.push(k);
+  });
+  /* regular ceiling fan -> prefer BLDC first */
+  cand.sort(function(a, b){
+    var A = D.p[a], B = D.p[b];
+    if (c === 'Fans' && f.t === 'Ceiling') { var ba = (A[10] || {}).t === 'BLDC ceiling' ? 0 : 1, bb = (B[10] || {}).t === 'BLDC ceiling' ? 0 : 1; if (ba !== bb) return ba - bb; }
+    return A[7] - B[7];
+  });
+  for (var k = 0; k < cand.length && out.length < (max || 2); k++) { var x = D.p[cand[k]]; if (fams[x[13]]) continue; fams[x[13]] = 1; out.push(cand[k]); }
+  return out;
+}
+/* cross-sell rules: category -> list of predicates over rows (most popular matching items are suggested) */
+function xsRules(r, D){
+  var c = D.cats[r[0]], f = r[10] || {}, R = [];
+  var is = function(cat, fn){ var ci = CI(D, cat); return function(x){ return x[0] === ci && (!fn || fn(x, x[10] || {})); }; };
+  var houseWire = function(sq){ return is('Wires & Cables', function(x, g){ return g.t === 'House wire (HRFR 90 m)' && (!sq || sq.indexOf(g.x) >= 0); }); };
+  if (c === 'Fans') R = [is('Switches', function(x, g){ return g.x === 'Fan regulator'; }), is('LED Lighting', function(x, g){ return g.t === 'Bulb / lamp'; }), is('Switches', function(x, g){ return g.x === 'GI box (concealed)' || g.x === 'Surface box'; })];
+  else if (c === 'Water Heaters') R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB' && /\b(20|25|32) A\b/.test(x[1]); }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB' && /30 mA/.test(x[1]); }), houseWire(['4 sq mm'])];
+  else if (c === 'Pumps') R = [is('Wires & Cables', function(x, g){ return g.t === 'Flat submersible'; }), is('Switches', function(x){ return /Motor Starter/.test(x[1]); }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB' && / DP /.test(' ' + x[1] + ' '); })];
+  else if (c === 'Chimneys') R = [is('Cooktops & Hobs')];
+  else if (c === 'Cooktops & Hobs') R = [is('Chimneys')];
+  else if (c === 'MCB, RCCB & DB' && (f.t === 'MCB' || f.t === 'RCCB' || f.t === 'RCBO')) R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'Distribution board'; }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB' && f.t !== 'RCCB'; })];
+  else if (c === 'MCB, RCCB & DB' && f.t === 'Distribution board') R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB'; }), is('MCB, RCCB & DB', function(x, g){ return g.t === 'RCCB'; })];
+  else if (c === 'Switches' && f.x !== 'Plate' && f.x !== 'GI box (concealed)' && f.x !== 'Surface box') R = [is('Switches', function(x, g){ return g.t === f.t && g.x === 'Plate'; }), is('Switches', function(x, g){ return g.x === 'GI box (concealed)'; }), houseWire(['1 sq mm', '1.5 sq mm'])];
+  else if (c === 'Switches' && f.x === 'Plate') R = [is('Switches', function(x, g){ return g.t === f.t && g.x === 'Switch'; }), is('Switches', function(x, g){ return g.t === f.t && g.x === 'Socket'; }), is('Switches', function(x, g){ return g.x === 'GI box (concealed)'; })];
+  else if (c === 'Switches') R = [is('Switches', function(x, g){ return g.x === 'Switch'; }), is('Switches', function(x, g){ return g.x === 'Plate'; })];
+  else if (c === 'LED Lighting') R = [is('Switches', function(x, g){ return g.x === 'Switch'; }), is('Switches', function(x, g){ return g.x === 'Plate'; })];
+  else if (c === 'Wires & Cables') R = [is('MCB, RCCB & DB', function(x, g){ return g.t === 'MCB'; }), is('Switches', function(x, g){ return g.x === 'Switch'; })];
+  return R;
+}
+function crossSell(srcIdx, D, exclude, max){
+  /* round-robin over rules so each complementary type gets a slot; one item per family; most popular first */
+  var rulesets = srcIdx.map(function(i){ return xsRules(D.p[i], D); }).filter(function(x){ return x.length; });
+  var lists = [];
+  rulesets.forEach(function(rs){ rs.forEach(function(p){ lists.push(p); }); });
+  if (!lists.length) return [];
+  var byRank = D.byRank || (D.byRank = D.p.map(function(_, i){ return i; }).sort(function(a, b){ return D.p[a][7] - D.p[b][7]; }));
+  var picks = lists.map(function(p){ var o = []; for (var k = 0; k < byRank.length && o.length < 8; k++) { var i = byRank[k]; if (p(D.p[i])) o.push(i); } return o; });
+  var out = [], fams = {}, ex = exclude || {};
+  srcIdx.forEach(function(i){ fams[D.p[i][13]] = 1; });
+  for (var round = 0; round < 8 && out.length < (max || 4); round++)
+    for (var l = 0; l < picks.length && out.length < (max || 4); l++) {
+      var lst = picks[l];
+      while (lst.length) { var i = lst.shift(); if (ex[i] || fams[D.p[i][13]]) continue; fams[D.p[i][13]] = 1; out.push(i); break; }
+    }
+  return out;
+}
+/* full box / carton nudge: only when the standard pack quantity is known */
+function packNudge(r, qty){
+  var p = r[12]; if (!p || p < 2 || !qty || qty % p === 0) return null;
+  var to = Math.ceil(qty / p) * p; return { to: to, add: to - qty, amt: (to - qty) * r[4], pack: p };
+}
+if (typeof module !== 'undefined') module.exports = { score: score, norm: norm, qtokens: qtokens, hayOf: hayOf, matchRow: matchRow, pickVariant: pickVariant, upsell: upsell, crossSell: crossSell, packNudge: packNudge, xsRules: xsRules };
+
+</script>
 <script>
 (function(){
-/* row: [cat, name, code, lp, rate, group, unit, rank, img, badge, facets{t,x,y,b}, extra] */
-var D = null, CATS = [], NSC = {}, cat = -1, q = '', shown = 40, PAGE = 40;
+/* row: [cat, name, code, lp, rate, group, unit, rank, img, badge, facets, extra, pack, fam, attrs]; fam: [name, cat, dims, rank, badge, img, rows, label] */
+var D = null, CATS = [], NSC = {}, cat = -1, q = '', shown = 30, PAGE = 30;
 var sort = 'pop', F = { t: {}, x: {}, y: {}, b: {}, pmin: '', pmax: '' };
-var cart = load('ns_cart', {});  /* key -> qty (same key format as v1, so existing carts survive) */
+var cart = load('ns_cart', {});  /* key -> qty (same key format as v1/v2) */
 var $ = function(id){ return document.getElementById(id); };
 function load(k, d){ try { var v = JSON.parse(localStorage.getItem(k)); return v || d; } catch(e){ return d; } }
 function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 function key(r){ return r[2] ? r[0] + '|' + r[2] + '|' + r[3] : r[0] + '|' + r[1] + '|' + r[3]; }
-var BYKEY = {};
+var BYKEY = {}, IDX = {};
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
-/* ---------- category icons ---------- */
+/* ---------- icons ---------- */
 var P = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">';
 var IC = {
   all: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
   'Fans': '<circle cx="12" cy="12" r="2"/><path d="M12 10c-.5-4 .5-7 3.5-7 2.2 0 2 3.2-1.5 5.5M14 13.2c3.6 1.6 5.6 3.6 4.3 5.6-1.2 1.9-3.9.1-4.9-3.6M10.2 13.3C7.6 16.4 5 17.5 3.8 15.6c-1.2-2 1.7-3.6 5.9-3.4"/>',
-  'Small Appliances & Heaters': '<path d="M8 3h8l-1.2 9H9.2z"/><path d="M7 12h10v4.5A2.5 2.5 0 0 1 14.5 19h-5A2.5 2.5 0 0 1 7 16.5z"/><path d="M8 21h8M12 15.5h0"/>',
+  'Small Appliances & Heaters': '<path d="M8 3h8l-1.2 9H9.2z"/><path d="M7 12h10v4.5A2.5 2.5 0 0 1 14.5 19h-5A2.5 2.5 0 0 1 7 16.5z"/><path d="M8 21h8"/>',
   'Water Heaters': '<rect x="6.5" y="3" width="11" height="16" rx="5"/><path d="M10 19v2.5M14 19v2.5M12 8v3.5"/><circle cx="12" cy="14" r="1.2"/>',
   'Air Coolers': '<rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7h7M8.5 10h7M8.5 13h7"/><circle cx="12" cy="17.2" r="1"/>',
   'Pumps': '<circle cx="9" cy="13.5" r="5"/><circle cx="9" cy="13.5" r="1.6"/><path d="M14 13.5h6.5M18.5 11v5M9 8.5V4h4.5"/>',
   'Chimneys': '<path d="M10 3h4v7h-4z"/><path d="M3.5 18.5L10 10h4l6.5 8.5z"/><path d="M8 21h8"/>',
   'Cooktops & Hobs': '<rect x="2.5" y="7" width="19" height="11" rx="2"/><circle cx="8" cy="12.5" r="2.6"/><circle cx="16" cy="12.5" r="2.6"/>',
-  'Personal Grooming': '<rect x="9" y="8" width="6" height="13" rx="3"/><path d="M8 3.5h8V8H8zM10 6h0M12 6h0M14 6h0"/>',
+  'Personal Grooming': '<rect x="9" y="8" width="6" height="13" rx="3"/><path d="M8 3.5h8V8H8z"/>',
   'Wires & Cables': '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/><path d="M20.5 12H23"/>',
   'MCB, RCCB & DB': '<rect x="7" y="2.5" width="10" height="19" rx="1.8"/><rect x="10" y="7.5" width="4" height="6" rx="1"/><path d="M10 17.5h4"/>',
   'Changeover & Switch Fuse': '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 15l6-6"/><circle cx="8.5" cy="9" r="1"/><circle cx="15.5" cy="15" r="1"/>',
-  'Havells Switches': '<rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="7" width="6" height="10" rx="1.5"/><path d="M12 9.5v2"/>',
-  'Crabtree Switches': '<rect x="2.5" y="6" width="19" height="12" rx="2"/><rect x="5.5" y="8.5" width="5.5" height="7" rx="1"/><rect x="13" y="8.5" width="5.5" height="7" rx="1"/>',
+  'Switches': '<rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="7" width="6" height="10" rx="1.5"/><path d="M12 9.5v2"/>',
   'LED Lighting': '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
-  'Professional Luminaires': '<rect x="3" y="7.5" width="18" height="5" rx="1"/><path d="M12 3.5v4M6.5 15.5l-1.5 4M12 15.5v4.5M17.5 15.5l1.5 4"/>',
-  'Solar': '<path d="M4 20.5l3-10h10l3 10z"/><path d="M5.5 15.5h13M12 10.5v10M12 3v2.5M7.5 4.5l1.2 2M16.5 4.5l-1.2 2"/>'
+  'Professional Luminaires': '<rect x="3" y="7.5" width="18" height="5" rx="1"/><path d="M12 3.5v4M6.5 15.5l-1.5 4M12 15.5v4.5M17.5 15.5l1.5 4"/>'
 };
-var TINT = ['#fff1e6','#eef6ff','#fff0f0','#e9f9f5','#eef3ff','#f3f0ff','#fff6e5','#fdeef7','#fff4e0','#eef8ee','#f0f4f8','#f6f1ea','#f1f1f7','#fffbe6','#eef7fb','#f2f9e9'];
-var TFG  = ['#c2410c','#1d63c1','#c81e1e','#0f8a6a','#3655c9','#6d46c7','#a86200','#b8237a','#b45309','#2f7d32','#3d5873','#7a5a33','#4b4b6b','#a17700','#1a7896','#4d7c0f'];
-var SYN = {'Fans':'fan pankha','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer heater','Air Coolers':'cooler','Pumps':'pump motor','Chimneys':'chimney kitchen','Cooktops & Hobs':'gas stove chulha','Wires & Cables':'wire cable','MCB, RCCB & DB':'mcb db','Havells Switches':'switch modular','Crabtree Switches':'switch modular','LED Lighting':'led light','Professional Luminaires':'light'};
-var SHORT = {'Fans':'Fans','Small Appliances & Heaters':'Appliances','Water Heaters':'Water heaters','Air Coolers':'Coolers','Pumps':'Pumps','Chimneys':'Chimneys','Cooktops & Hobs':'Hobs & cooktops','Personal Grooming':'Grooming','Wires & Cables':'Wires','MCB, RCCB & DB':'MCB & DB','Changeover & Switch Fuse':'Changeover','Havells Switches':'Havells switches','Crabtree Switches':'Crabtree switches','LED Lighting':'LED lights','Professional Luminaires':'Pro lighting','Solar':'Solar'};
+var TINT = ['#fff1e6','#eef6ff','#fff0f0','#e9f9f5','#eef3ff','#f3f0ff','#fff6e5','#fdeef7','#fff4e0','#eef8ee','#f0f4f8','#f1f1f7','#f1f1f7','#fffbe6','#eef7fb','#f2f9e9'];
+var TFG  = ['#c2410c','#1d63c1','#c81e1e','#0f8a6a','#3655c9','#6d46c7','#a86200','#b8237a','#b45309','#2f7d32','#3d5873','#4b4b6b','#4b4b6b','#a17700','#1a7896','#4d7c0f'];
+var SHORT = {'Fans':'Fans','Small Appliances & Heaters':'Appliances','Water Heaters':'Water heaters','Air Coolers':'Coolers','Pumps':'Pumps','Chimneys':'Chimneys','Cooktops & Hobs':'Hobs & cooktops','Personal Grooming':'Grooming','Wires & Cables':'Wires','MCB, RCCB & DB':'MCB & DB','Changeover & Switch Fuse':'Changeover','Switches':'Switches','LED Lighting':'LED lights','Professional Luminaires':'Pro lighting'};
 function icon(name){ return P + (IC[name] || IC.all) + '</svg>'; }
-function pic(r, cls){
-  if (r[8]) return '<div class="pic' + (cls || '') + '"><img src="' + (window.IMGB || 'img/') + ' + r[8] + '.webp" alt="" loading="lazy" decoding="async" width="72" height="72" onerror="this.parentNode.classList.add(\'ic\');this.outerHTML=window.__ic(' + r[0] + ')"></div>';
-  return '<div class="pic ic' + (cls || '') + '" style="--icbg:' + TINT[r[0] % 16] + ';--icfg:' + TFG[r[0] % 16] + '">' + icon(CATS[r[0]]) + '</div>';
+function picH(img, c, cls){
+  if (img) return '<div class="pic' + (cls || '') + '"><img src="' + (window.IMGB || 'img/') + img + '.webp" alt="" loading="lazy" decoding="async" width="72" height="72" onerror="this.parentNode.classList.add(\'ic\');this.outerHTML=window.__ic(' + c + ')"></div>';
+  return '<div class="pic ic' + (cls || '') + '" style="--icbg:' + TINT[c % 16] + ';--icfg:' + TFG[c % 16] + '">' + icon(CATS[c]) + '</div>';
 }
+function pic(r){ return picH(r[8] || (D.f[r[13]] || [])[5], r[0]); }
 window.__ic = function(c){ return icon(CATS[c]); };
 
 /* ---------- load ---------- */
 fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
   D = d; CATS = d.cats; d.route.NS.forEach(function(i){ NSC[i] = 1; });
-  d.p.forEach(function(r){
-    var f = r[10] || {};
-    var s = [r[1], r[2], r[5], CATS[r[0]], SHORT[CATS[r[0]]], SYN[CATS[r[0]]], f.t, f.x, f.y, f.b, r[11]].join(' ').toLowerCase();
-    if (f.x) s += ' ' + f.x.replace(/\s+/g, '').toLowerCase() + ' ' + f.x.replace(/\s*sq mm/, 'mm').replace(/\s+/g, '').toLowerCase();
-    r.s = s; r.c = s.replace(/[\s·.\-–/()]+/g, '');
-    BYKEY[key(r)] = r;
-  });
+  d.p.forEach(function(r, i){ r.h = hayOf(r, d); r.i = i; BYKEY[key(r)] = r; });
   Object.keys(cart).forEach(function(k){ if (!BYKEY[k]) delete cart[k]; });
   save('ns_cart', cart);
   chips(); render(); bar(); foot();
-  if (location.hash === '#cart' && count()) showCart();
-  if (location.hash === '#demo-done') { $('wa2').href = '#'; $('doneMsg').innerHTML = 'Order ID <b>SG261027-DEMO</b><br>₹32,949 (incl. GST)<br>✓ Havells items – received<br>✓ Chimney / hob items – received'; show('vDone'); }
-  if (location.hash === '#demo-filter') { cat = 0; syncChips(); render(); openSheet(); }
-}).catch(function(){ $('list').innerHTML = '<div class="empty"><b>Could not load the price list</b>Please check your internet and reload the page.<div class="eb"><button onclick="location.reload()">Reload</button></div></div>'; $('meta').textContent = ''; });
+  var h = location.hash;
+  if (h === '#cart' && count()) showCart();
+  if (h === '#demo-done') { $('wa2').href = '#'; $('doneMsg').innerHTML = 'Order ID <b>SG261027-DEMO</b><br>₹32,949 (incl. GST)<br>✓ Havells items – received<br>✓ Chimney / hob items – received'; show('vDone'); }
+  if (h === '#demo-filter') { cat = 0; syncChips(); render(); openSheet(); }
+  var m = h.match(/^#demo-q=(.+)$/); if (m) { $('q').value = decodeURIComponent(m[1]); q = $('q').value; $('qx').style.display = 'block'; render(); }
+  m = h.match(/^#demo-prod=(.+)$/); if (m) { $('q').value = decodeURIComponent(m[1]); q = $('q').value; render(); var c1 = $('list').querySelector('.card'); if (c1) openProd(+c1.dataset.f, +c1.dataset.v); }
+  m = h.match(/^#demo-sug=(.+)$/); if (m) { $('q').value = decodeURIComponent(m[1]); q = $('q').value; render(); var b1 = $('list').querySelector('.add'); if (b1) b1.click(); }
+}).catch(function(e){ $('list').innerHTML = '<div class="empty"><b>Could not load the price list</b>Please check your internet and reload the page.<div class="eb"><button onclick="location.reload()">Reload</button></div></div>'; $('meta').textContent = ''; if (window.console) console.error(e); });
 
 function chips(){
   var h = '<button class="chip on" data-c="-1" role="tab">' + icon('all') + 'All</button>';
-  CATS.forEach(function(c, i){ h += '<button class="chip" data-c="' + i + '" role="tab">' + icon(c) + esc(SHORT[c] || c) + '</button>'; });
+  CATS.forEach(function(c, i){ if (c) h += '<button class="chip" data-c="' + i + '" role="tab">' + icon(c) + esc(SHORT[c] || c) + '</button>'; });
   $('chips').innerHTML = h;
   $('chips').onclick = function(e){
     var b = e.target.closest('.chip'); if (!b) return;
@@ -368,15 +567,13 @@ function chips(){
   };
 }
 function syncChips(){
-  [].forEach.call($('chips').children, function(x){ var on = +x.dataset.c === cat; x.classList.toggle('on', on); if (on && x.scrollIntoView) { var p = x.parentNode; p.scrollTo ? p.scrollTo({ left: x.offsetLeft - 10, behavior: 'smooth' }) : (p.scrollLeft = x.offsetLeft - 10); } });
+  [].forEach.call($('chips').children, function(x){ var on = +x.dataset.c === cat; x.classList.toggle('on', on); if (on) { var p = x.parentNode; if (p.scrollTo) p.scrollTo({ left: x.offsetLeft - 10, behavior: 'smooth' }); else p.scrollLeft = x.offsetLeft - 10; } });
 }
 function scrollTop(){ var t = $('shopTop').offsetTop; if (window.scrollY > t) window.scrollTo(0, t); }
 
-/* ---------- filtering ---------- */
-function words(){ return q.toLowerCase().replace(/sq\.?\s*mm/g, 'sq mm').split(/\s+/).filter(Boolean); }
-function textOk(r, w){ for (var i = 0; i < w.length; i++) { var x = w[i]; if (r.s.indexOf(x) < 0 && r.c.indexOf(x.replace(/[.\-–/()]+/g, '')) < 0) return false; } return true; }
+/* ---------- filtering (on variants), display (one card per family) ---------- */
 function has(o){ for (var k in o) return true; return false; }
-function pass(r, w, flt, skip){
+function pass(r, toks, flt, skip){
   if (cat >= 0 && r[0] !== cat) return false;
   var f = r[10] || {};
   if (skip !== 't' && has(flt.t) && !flt.t[f.t]) return false;
@@ -385,40 +582,61 @@ function pass(r, w, flt, skip){
   if (skip !== 'b' && has(flt.b) && !flt.b[f.b || 'Havells']) return false;
   if (flt.pmin !== '' && r[4] < +flt.pmin) return false;
   if (flt.pmax !== '' && r[4] > +flt.pmax) return false;
-  return textOk(r, w);
+  return !toks.length || matchRow(r.h, toks);
 }
 var SORTS = { pop: 'Popular', lo: 'Price: low to high', hi: 'Price: high to low', az: 'Name A–Z' };
-function sorter(a, b){
-  if (sort === 'lo') return a[4] - b[4] || a[7] - b[7];
-  if (sort === 'hi') return b[4] - a[4] || a[7] - b[7];
-  if (sort === 'az') return a[1].localeCompare(b[1]);
-  return a[7] - b[7];
+function groups(){
+  var toks = qtokens(q), G = {}, list = [];
+  D.p.forEach(function(r){
+    if (!pass(r, toks, F)) return;
+    var g = G[r[13]];
+    if (!g) { g = G[r[13]] = { f: r[13], rows: [], min: r[4], sc: -1, best: r.i }; list.push(g); }
+    g.rows.push(r.i); if (r[4] < g.min) g.min = r[4];
+    var s = toks.length ? score(r, toks) : 0;
+    if (s > g.sc || (s === g.sc && r[7] < D.p[g.best][7])) { g.sc = s; g.best = r.i; }
+  });
+  list.sort(function(a, b){
+    if (sort === 'lo') return a.min - b.min || D.f[a.f][3] - D.f[b.f][3];
+    if (sort === 'hi') return b.min - a.min || D.f[a.f][3] - D.f[b.f][3];
+    if (sort === 'az') return D.f[a.f][0].localeCompare(D.f[b.f][0]);
+    if (toks.length && b.sc !== a.sc) return b.sc - a.sc;
+    return D.f[a.f][3] - D.f[b.f][3];
+  });
+  return list;
 }
-function matches(){ var w = words(); return D.p.filter(function(r){ return pass(r, w, F); }).sort(sorter); }
-
-/* ---------- cards ---------- */
-function badge(r){ return r[9] === 2 ? '<span class="bdg b2">★ Best seller</span><br>' : r[9] === 1 ? '<span class="bdg b1">Popular</span><br>' : ''; }
-function card(r){
-  var k = key(r), n = cart[k] || 0, off = Math.round((1 - r[4] / r[3]) * 100);
-  return '<div class="card" data-k="' + esc(k) + '">' + pic(r) +
-    '<div class="info">' + badge(r) + '<div class="nm">' + esc(r[1]) + '</div>' +
-    '<div class="sub">' + esc([r[2], r[5] || CATS[r[0]]].filter(Boolean).join(' · ')) + '</div></div>' +
-    '<div class="bot"><div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + inr(r[3]) + '</span><span class="off">' + off + '% off</span>' +
-    (r[6] ? '<span class="unit">' + esc(r[6]) + '</span>' : '') + '</div>' +
-    (n ? stepper(n) : '<button class="add" data-a="add" aria-label="Add ' + esc(r[1]) + '">+ Add</button>') + '</div></div>';
+function famQty(fi){ var n = 0; D.f[fi][6].forEach(function(i){ n += cart[key(D.p[i])] || 0; }); return n; }
+function badgeH(b){ return b === 2 ? '<span class="bdg b2">★ Best seller</span><br>' : b === 1 ? '<span class="bdg b1">Popular</span><br>' : ''; }
+function card(g){
+  var fam = D.f[g.f], multi = fam[6].length > 1, r = D.p[g.best];
+  if (!multi) {
+    var k = key(r), n = cart[k] || 0, off = Math.round((1 - r[4] / r[3]) * 100);
+    return '<div class="card" data-f="' + g.f + '" data-v="' + r.i + '" data-k="' + esc(k) + '">' + pic(r) +
+      '<div class="info">' + badgeH(r[9]) + '<div class="nm">' + esc(r[1]) + '</div>' +
+      '<div class="sub">' + esc([r[2], r[5] || CATS[r[0]]].filter(Boolean).join(' · ')) + '</div></div>' +
+      '<div class="bot"><div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + inr(r[3]) + '</span><span class="off">' + off + '% off</span>' +
+      (r[6] ? '<span class="unit">' + esc(r[6]) + '</span>' : '') + '</div>' +
+      (n ? stepper(n) : '<button class="add" data-a="add" aria-label="Add ' + esc(r[1]) + '">+ Add</button>') + '</div></div>';
+  }
+  var inC = famQty(g.f), cnt = g.rows.length, tot = fam[6].length;
+  return '<div class="card" data-f="' + g.f + '" data-v="' + r.i + '">' + picH(fam[5], fam[1]) +
+    '<div class="info">' + badgeH(fam[4]) + '<div class="nm">' + esc(fam[0]) + '</div>' +
+    '<div class="rng">' + esc(fam[7] || (tot + ' options')) + (fam[7] ? ' · ' + tot + ' options' : '') + '</div>' +
+    (cnt < tot ? '<div class="sub">' + cnt + ' match' + (cnt === 1 ? '' : 'es') + ' · ' + esc((r[14] || []).join(', ')) + '</div>' : '') + '</div>' +
+    '<div class="bot"><div class="pr"><span class="from">from</span><span class="rt">' + inr(g.min) + '</span>' + (inC ? '<span class="incart">✓ ' + inC + ' in cart</span>' : '') + '</div>' +
+    '<button class="choose" data-a="choose">Choose ›</button></div></div>';
 }
 function stepper(n){ return '<div class="step"><button data-a="dec" aria-label="Less">−</button><input inputmode="numeric" pattern="[0-9]*" value="' + n + '" data-a="set" aria-label="Quantity"><button data-a="inc" aria-label="More">+</button></div>'; }
-var io;
+var io, LAST = [];
 function render(){
   if (!D) return;
-  var m = matches();
+  var m = LAST = groups(), nItems = 0; m.forEach(function(g){ nItems += g.rows.length; });
   var lab = (cat >= 0 ? ' in <b>' + esc(SHORT[CATS[cat]] || CATS[cat]) + '</b>' : '') + (q ? ' for “' + esc(q) + '”' : '');
-  $('meta').innerHTML = '<b>' + m.length.toLocaleString('en-IN') + '</b> item' + (m.length === 1 ? '' : 's') + lab;
-  $('sortl').textContent = sort === 'pop' ? 'Popular' : sort === 'lo' ? 'Price ↑' : sort === 'hi' ? 'Price ↓' : 'Name';
+  $('meta').innerHTML = '<b>' + m.length.toLocaleString('en-IN') + '</b> product' + (m.length === 1 ? '' : 's') + (nItems !== m.length ? ' <span style="opacity:.75">(' + nItems.toLocaleString('en-IN') + ' items)</span>' : '') + lab;
+  $('sortl').textContent = sort === 'pop' ? (q ? 'Best match' : 'Popular') : sort === 'lo' ? 'Price ↑' : sort === 'hi' ? 'Price ↓' : 'Name';
   activeChips();
   var h = m.slice(0, shown).map(card).join('');
   if (m.length > shown) h += '<button class="more" id="more">Show more (' + (m.length - shown).toLocaleString('en-IN') + ' left)</button>';
-  if (!m.length) h = '<div class="empty">' + P + '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M8.5 11h5"/></svg><b>No items found</b>Try a shorter word, a model code, or clear the filters.<div class="eb">' +
+  if (!m.length) h = '<div class="empty">' + P + '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M8.5 11h5"/></svg><b>No items found</b>Try fewer words, a model code, or clear the filters.<div class="eb">' +
     (q ? '<button data-e="q">Clear search</button>' : '') + (nF() ? '<button data-e="f">Clear filters</button>' : '') + (cat >= 0 ? '<button data-e="c">All categories</button>' : '') + '</div></div>';
   $('list').innerHTML = h;
   var mb = $('more');
@@ -426,9 +644,27 @@ function render(){
   if (mb) { mb.onclick = function(){ shown += PAGE * 2; render(); };
     if (window.IntersectionObserver) { io = new IntersectionObserver(function(es){ if (es[0].isIntersecting) { io.disconnect(); shown += PAGE * 2; render(); } }, { rootMargin: '700px' }); io.observe(mb); } }
 }
+function refreshCard(fi){
+  var el = $('list').querySelector('.card[data-f="' + fi + '"]'); if (!el) return;
+  var g = LAST.filter(function(x){ return x.f === fi; })[0]; if (g) el.outerHTML = card(g);
+}
 $('list').addEventListener('click', function(e){
   var eb = e.target.closest('[data-e]');
-  if (eb) { var t = eb.dataset.e; if (t === 'q') { $('q').value = ''; q = ''; $('qx').style.display = 'none'; } if (t === 'f') clearF(F); if (t === 'c') { cat = -1; F.t = {}; F.x = {}; F.y = {}; syncChips(); } shown = PAGE; render(); }
+  if (eb) { var t = eb.dataset.e; if (t === 'q') { $('q').value = ''; q = ''; $('qx').style.display = 'none'; } if (t === 'f') clearF(F); if (t === 'c') { cat = -1; F.t = {}; F.x = {}; F.y = {}; syncChips(); } shown = PAGE; render(); return; }
+  var c = e.target.closest('.card'); if (!c) return;
+  var b = e.target.closest('[data-a]');
+  if (b && b.tagName === 'INPUT') return;
+  if (!b || b.dataset.a === 'choose') { openProd(+c.dataset.f, +c.dataset.v); return; }
+  var r = D.p[+c.dataset.v], k = key(r), n = cart[k] || 0;
+  if (b.dataset.a === 'add' || b.dataset.a === 'inc') n++;
+  if (b.dataset.a === 'dec') n--;
+  setQty(k, n);
+  if (b.dataset.a === 'add') { toast('✓ Added · ' + r[1]); bump(); suggestAfterAdd(r.i); }
+  refreshCard(r[13]);
+});
+$('list').addEventListener('change', function(e){
+  if (e.target.dataset.a !== 'set') return;
+  var c = e.target.closest('.card'); setQty(c.dataset.k, e.target.value); refreshCard(+c.dataset.f);
 });
 
 /* ---------- active filter chips ---------- */
@@ -450,22 +686,28 @@ $('act').onclick = function(e){
   shown = PAGE; render();
 };
 
-/* ---------- filter sheet ---------- */
+/* ---------- sheets ---------- */
+var openS = null;
+function openSh(id){
+  openS = id; $('ov').classList.remove('hide'); $(id).classList.remove('hide'); document.body.classList.add('lock');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ $('ov').classList.add('on'); $(id).classList.add('on'); }); });
+}
+function closeSh(){
+  var id = openS; if (!id) return; openS = null;
+  $('ov').classList.remove('on'); $(id).classList.remove('on'); document.body.classList.remove('lock');
+  setTimeout(function(){ if (openS !== id) { $(id).classList.add('hide'); if (!openS) $('ov').classList.add('hide'); } }, 230);
+}
+$('ov').onclick = closeSh;
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSh(); });
+
+/* filter sheet */
 var DR = null, dsort = 'pop';
 function copyF(o){ return { t: Object.assign({}, o.t), x: Object.assign({}, o.x), y: Object.assign({}, o.y), b: Object.assign({}, o.b), pmin: o.pmin, pmax: o.pmax }; }
-function openSheet(){
-  DR = copyF(F); dsort = sort; drawSheet();
-  $('ov').classList.remove('hide'); $('sheet').classList.remove('hide'); document.body.classList.add('lock');
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){ $('ov').classList.add('on'); $('sheet').classList.add('on'); }); });
-}
-function closeSheet(){
-  $('ov').classList.remove('on'); $('sheet').classList.remove('on'); document.body.classList.remove('lock');
-  setTimeout(function(){ $('ov').classList.add('hide'); $('sheet').classList.add('hide'); }, 230);
-}
+function openSheet(){ DR = copyF(F); dsort = sort; drawSheet(); openSh('sheet'); }
 function facetVals(g){
-  var w = words(), c = {};
+  var toks = qtokens(q), c = {};
   D.p.forEach(function(r){
-    if (!pass(r, w, DR, g)) return;
+    if (!pass(r, toks, DR, g)) return;
     var f = r[10] || {}, v = g === 'b' ? (f.b || 'Havells') : f[g];
     if (v) c[v] = (c[v] || 0) + 1;
   });
@@ -489,7 +731,7 @@ function drawSheet(){
     h += optBlock((D.tl && D.tl[cn]) || 'Type', 't', facetVals('t'));
     h += optBlock((D.xl && D.xl[cn]) || 'Size', 'x', facetVals('x'));
     h += optBlock('Poles', 'y', facetVals('y'));
-  } else h += '<div class="fg"><h3>Type &amp; size</h3><div class="hint">Pick a category (Fans, Wires, MCB…) to filter by type, sweep, sq mm, amps and more.</div></div>';
+  } else h += '<div class="fg"><h3>Type &amp; size</h3><div class="hint">Pick a category (Fans, Wires, MCB, Switches…) to filter by type, sweep, sq mm, amps, range and more.</div></div>';
   h += optBlock('Brand', 'b', facetVals('b'));
   h += '<div class="fg"><h3>Your Rate (₹)</h3><div class="opts">' + PRESET.map(function(p, i){ var on = String(DR.pmin) === String(p[0]) && String(DR.pmax) === String(p[1]); return '<button class="opt' + (on ? ' on' : '') + '" data-p="' + i + '">' + p[2] + '</button>'; }).join('') + '</div>' +
     '<div class="prow"><input id="pmin" inputmode="numeric" pattern="[0-9]*" placeholder="Min ₹" value="' + esc(DR.pmin) + '" aria-label="Minimum price"><span>–</span><input id="pmax" inputmode="numeric" pattern="[0-9]*" placeholder="Max ₹" value="' + esc(DR.pmax) + '" aria-label="Maximum price"></div></div>';
@@ -497,7 +739,7 @@ function drawSheet(){
   ['pmin', 'pmax'].forEach(function(id){ $(id).addEventListener('input', function(){ DR[id] = this.value.replace(/[^\d]/g, ''); countBtn(); }); $(id).addEventListener('change', drawSheet); });
   countBtn();
 }
-function countBtn(){ var w = words(), n = 0; D.p.forEach(function(r){ if (pass(r, w, DR)) n++; }); $('shA').textContent = n ? 'Show ' + n.toLocaleString('en-IN') + ' item' + (n === 1 ? '' : 's') : 'No items – change filters'; }
+function countBtn(){ var toks = qtokens(q), n = 0, fs = {}; D.p.forEach(function(r){ if (pass(r, toks, DR)) { n++; fs[r[13]] = 1; } }); var nf = Object.keys(fs).length; $('shA').textContent = n ? 'Show ' + nf.toLocaleString('en-IN') + ' product' + (nf === 1 ? '' : 's') : 'No items – change filters'; }
 $('sb').onclick = function(e){
   var b = e.target.closest('button'); if (!b) return;
   if (b.dataset.s) dsort = b.dataset.s;
@@ -506,12 +748,83 @@ $('sb').onclick = function(e){
   drawSheet();
 };
 $('fbtn').onclick = openSheet; $('sortb').onclick = openSheet;
-$('ov').onclick = closeSheet; $('shX').onclick = closeSheet; $('shC').onclick = closeSheet;
+$('shX').onclick = closeSh; $('shC').onclick = closeSh;
 $('shClr').onclick = function(){ clearF(DR); dsort = 'pop'; drawSheet(); };
-$('shA').onclick = function(){ F = DR; sort = dsort; shown = PAGE; closeSheet(); render(); scrollTop(); };
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !$('sheet').classList.contains('hide')) closeSheet(); });
+$('shA').onclick = function(){ F = DR; sort = dsort; shown = PAGE; closeSh(); render(); scrollTop(); };
 
-/* ---------- cart actions ---------- */
+/* ---------- product / variant sheet ---------- */
+var PS = null; /* {f, v, qty} */
+function openProd(fi, vi){
+  var fam = D.f[fi]; if (vi == null || D.p[vi][13] !== fi) vi = fam[6].slice().sort(function(a, b){ return D.p[a][7] - D.p[b][7]; })[0];
+  PS = { f: fi, v: vi, qty: cart[key(D.p[vi])] || 1 };
+  drawProd(); openSh('psheet'); $('pdb').scrollTop = 0;
+}
+function drawProd(){
+  var fam = D.f[PS.f], r = D.p[PS.v], k = key(r), inC = cart[k] || 0, off = Math.round((1 - r[4] / r[3]) * 100), sel = r[14] || [];
+  $('pdT').textContent = fam[6].length > 1 ? 'Choose option' : 'Product';
+  var h = '<div class="pdh">' + picH(r[8] || fam[5], r[0]) + '<div class="info">' + badgeH(r[9] || fam[4]) + '<div class="nm">' + esc(fam[6].length > 1 ? fam[0] : r[1]) + '</div><div class="sub">' + esc(r[5] || CATS[r[0]]) + '</div></div></div>';
+  if (fam[6].length > 1) {
+    h += '<div class="vd">';
+    fam[2].forEach(function(dname, j){
+      var vals = [], seen = {};
+      fam[6].forEach(function(i){ var v = D.p[i][14][j]; if (!seen[v]) { seen[v] = 1; vals.push(v); } });
+      vals.sort(function(a, b){ var x = parseFloat(a), y = parseFloat(b); return (isNaN(x) || isNaN(y)) ? 0 : x - y; });
+      h += '<h3>' + esc(dname) + '</h3><div class="opts">' + vals.map(function(v){
+        var exact = fam[6].some(function(i){ var a = D.p[i][14]; for (var kk = 0; kk < a.length; kk++) if (kk !== j && a[kk] !== sel[kk]) return false; return a[j] === v; });
+        return '<button class="vc' + (v === sel[j] ? ' on' : '') + (exact ? '' : ' na') + '" data-j="' + j + '" data-v="' + esc(v) + '">' + esc(v) + '</button>';
+      }).join('') + '</div>';
+    });
+    h += '</div>';
+  }
+  var nud = packNudge(r, PS.qty);
+  h += '<div class="sel"><div class="nm" style="font-size:14px">' + esc(r[1]) + '</div><div class="code">' + (r[2] ? 'Code ' + esc(r[2]) : '') + (r[6] ? ' · ' + esc(r[6]) : '') + '</div>' +
+    '<div class="pr"><span class="rt">' + inr(r[4]) + '</span><span class="lp">' + inr(r[3]) + '</span><span class="off">' + off + '% off</span></div>' +
+    (r[12] > 1 ? '<div class="pk">Box of ' + r[12] + (nud ? ' · add ' + nud.add + ' more for a full box (' + inr(nud.amt) + ') <button class="mini" data-pk="' + nud.to + '" style="min-height:32px;margin-left:4px">Make ' + nud.to + '</button>' : '') + '</div>' : '') +
+    '<div class="addrow"><div class="step"><button data-q="-1" aria-label="Less">−</button><input id="pq" inputmode="numeric" pattern="[0-9]*" value="' + PS.qty + '" aria-label="Quantity"><button data-q="1" aria-label="More">+</button></div>' +
+    '<button class="btn p" id="pAdd">' + (inC ? (inC === PS.qty ? '✓ In cart (' + inC + ')' : 'Update cart') : 'Add to cart') + '</button></div></div>';
+  var ups = upsell(PS.v, D, 2);
+  if (ups.length) h += '<div class="blk"><h3>⬆ Upgrade to</h3>' + ups.map(function(i){ var x = D.p[i]; return '<div class="up" data-i="' + i + '">' + pic(x) + '<div class="t"><b>' + esc(x[1]) + '</b><span>' + inr(x[4]) + '</span> <em>+' + inr(x[4] - r[4]) + ' more</em></div><button class="mini" data-sw="' + i + '">Switch</button></div>'; }).join('') + '</div>';
+  var ex = {}; Object.keys(cart).forEach(function(kk){ if (BYKEY[kk]) ex[BYKEY[kk].i] = 1; });
+  var xs = crossSell([PS.v], D, ex, 4);
+  if (xs.length) h += '<div class="blk"><h3>🔗 Often bought together</h3><div class="xs">' + xs.map(xcard).join('') + '</div></div>';
+  $('pdb').innerHTML = h;
+}
+function xcard(i){ var x = D.p[i], fam = D.f[x[13]], n = cart[key(x)] || 0; return '<div class="xc" data-i="' + i + '">' + pic(x) + '<div class="n">' + esc(x[1]) + '</div><div class="p">' + inr(x[4]) + '</div><button class="mini' + (n ? ' done' : '') + '" data-xa="' + i + '">' + (n ? '✓ Added' : '+ Add') + '</button></div>'; }
+function addOne(i, src){
+  var x = D.p[i], k = key(x); setQty(k, (cart[k] || 0) + (x[12] > 1 && !cart[k] ? 1 : 1)); toast('✓ Added · ' + x[1]); bump(); refreshCard(x[13]);
+}
+$('pdb').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.j != null) { var fam = D.f[PS.f], j = +b.dataset.j, nv = pickVariant(fam, D.p, D.p[PS.v][14], j, b.dataset.v); if (nv != null) { PS.v = nv; PS.qty = cart[key(D.p[nv])] || PS.qty || 1; drawProd(); } return; }
+  if (b.dataset.q) { PS.qty = Math.max(1, Math.min(9999, (PS.qty || 1) + +b.dataset.q)); drawProd(); return; }
+  if (b.dataset.pk) { PS.qty = +b.dataset.pk; drawProd(); return; }
+  if (b.id === 'pAdd') { var r = D.p[PS.v], k = key(r), was = cart[k] || 0; setQty(k, PS.qty); toast((was ? '✓ Updated · ' : '✓ Added · ') + r[1]); bump(); refreshCard(PS.f); drawProd(); return; }
+  if (b.dataset.sw) { var i = +b.dataset.sw; openProd(D.p[i][13], i); return; }
+  if (b.dataset.xa) { var xi = +b.dataset.xa; if (!cart[key(D.p[xi])]) { addOne(xi); b.textContent = '✓ Added'; b.classList.add('done'); } return; }
+});
+$('pdb').addEventListener('change', function(e){ if (e.target.id === 'pq') { PS.qty = Math.max(1, Math.min(9999, parseInt(e.target.value, 10) || 1)); drawProd(); } });
+$('pdX').onclick = closeSh;
+
+/* after a one-tap Add from the list: one quiet suggestion above the cart bar */
+var sugT;
+function suggestAfterAdd(i){
+  var r = D.p[i], ex = {}; Object.keys(cart).forEach(function(kk){ if (BYKEY[kk]) ex[BYKEY[kk].i] = 1; });
+  var u = upsell(i, D, 1), s, lab;
+  if (u.length) { s = u[0]; lab = 'Upgrade · +' + inr(D.p[s][4] - r[4]); }
+  else { var x = crossSell([i], D, ex, 1); if (x.length) { s = x[0]; lab = 'Often bought together'; } }
+  if (s == null) return;
+  var x2 = D.p[s];
+  $('sug').innerHTML = pic(x2) + '<div class="t"><small>' + lab + '</small><b>' + esc(x2[1]) + '</b>' + inr(x2[4]) + '</div><button class="mini" data-s="' + s + '">' + (u.length ? 'View' : '+ Add') + '</button><button class="x" aria-label="Dismiss">×</button>';
+  $('sug').dataset.mode = u.length ? 'view' : 'add';
+  $('sug').classList.add('on'); clearTimeout(sugT); sugT = setTimeout(function(){ $('sug').classList.remove('on'); }, 7000);
+}
+$('sug').onclick = function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  $('sug').classList.remove('on');
+  if (b.dataset.s) { var s = +b.dataset.s; if ($('sug').dataset.mode === 'view') openProd(D.p[s][13], s); else addOne(s); }
+};
+
+/* ---------- cart ---------- */
 function setQty(k, n){
   n = Math.max(0, Math.min(9999, parseInt(n, 10) || 0));
   if (n) cart[k] = n; else delete cart[k];
@@ -519,28 +832,18 @@ function setQty(k, n){
 }
 var tt;
 function toast(t){ var el = $('toast'); el.textContent = t; el.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ el.classList.remove('on'); }, 1300); }
-function bump(){ var b = $('bar'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
-function onListClick(e){
-  var b = e.target.closest('[data-a]'); if (!b || b.tagName === 'INPUT') return;
-  var c = e.target.closest('[data-k]'); if (!c) return;
-  var k = c.dataset.k, n = cart[k] || 0, r = BYKEY[k];
-  if (b.dataset.a === 'add' || b.dataset.a === 'inc') n++;
-  if (b.dataset.a === 'dec') n--;
-  setQty(k, n);
-  if (b.dataset.a === 'add') { toast('✓ Added · ' + r[1]); bump(); if (navigator.vibrate) try { navigator.vibrate(12); } catch(x){} }
-  if (c.classList.contains('card')) { c.outerHTML = card(r); } else renderCart();
-}
-function onListChange(e){
-  if (e.target.dataset.a !== 'set') return;
-  var c = e.target.closest('[data-k]'); setQty(c.dataset.k, e.target.value);
-  if (c.classList.contains('card')) c.outerHTML = card(BYKEY[c.dataset.k]); else renderCart();
-}
-$('list').addEventListener('click', onListClick); $('list').addEventListener('change', onListChange);
+function bump(){ var b = $('bar'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); if (navigator.vibrate) try { navigator.vibrate(12); } catch(x){} }
 $('lines').addEventListener('click', function(e){
-  var rm = e.target.closest('.rm'); if (rm) { setQty(rm.closest('[data-k]').dataset.k, 0); renderCart(); return; }
-  onListClick(e);
+  var line = e.target.closest('[data-k]'); if (!line) return;
+  var k = line.dataset.k, b = e.target.closest('button'); if (!b) return;
+  if (b.classList.contains('rm')) { setQty(k, 0); renderCart(); return; }
+  if (b.dataset.pk) { setQty(k, +b.dataset.pk); renderCart(); return; }
+  var n = cart[k] || 0;
+  if (b.dataset.a === 'inc') n++; else if (b.dataset.a === 'dec') n--; else return;
+  setQty(k, n); renderCart();
 });
-$('lines').addEventListener('change', onListChange);
+$('lines').addEventListener('change', function(e){ if (e.target.dataset.a !== 'set') return; setQty(e.target.closest('[data-k]').dataset.k, e.target.value); renderCart(); });
+$('cx').addEventListener('click', function(e){ var b = e.target.closest('[data-xa]'); if (!b) return; var i = +b.dataset.xa; if (!cart[key(D.p[i])]) addOne(i); renderCart(); });
 
 var tmr; $('q').addEventListener('input', function(){
   clearTimeout(tmr); var v = this.value; $('qx').style.display = v ? 'block' : 'none';
@@ -565,23 +868,29 @@ $('bar').onclick = showCart;
 function show(v){
   ['vShop', 'vCart', 'vDone'].forEach(function(x){ $(x).classList.toggle('hide', x !== v); });
   $('shopTop').classList.toggle('hide', v !== 'vShop');
+  $('sug').classList.remove('on');
   window.scrollTo(0, 0); bar();
 }
-function showCart(){ show('vCart'); renderCart(); fillShop(); if (location.hash !== '#cart') history.pushState(null, '', '#cart'); }
+function showCart(){ closeSh(); show('vCart'); renderCart(); fillShop(); if (location.hash !== '#cart') history.pushState(null, '', '#cart'); }
 $('backShop').onclick = function(){ if (location.hash === '#cart') history.back(); else { show('vShop'); render(); } };
 window.addEventListener('popstate', function(){ if (location.hash !== '#cart' && !$('vCart').classList.contains('hide')) { show('vShop'); render(); } });
 
 function renderCart(){
   var L = cartLines();
-  if (!L.length) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; updWa(); return; }
+  if (!L.length) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; $('cx').innerHTML = ''; updWa(); return; }
   $('lines').innerHTML = L.map(function(l){
-    var r = BYKEY[l.key];
-    return '<div class="line" data-k="' + esc(l.key) + '">' + pic(r) + '<div class="info"><div class="nm">' + esc(l.name) + '</div><div class="sub">' + esc(l.code || '') + (l.code ? ' · ' : '') + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + '</div></div><div class="ctl">' + stepper(l.qty) + '<button class="rm">Remove</button><div class="amt">' + inr(l.rate * l.qty) + '</div></div></div>';
+    var r = BYKEY[l.key], nud = packNudge(r, l.qty), attrs = (r[14] || []).join(' · ');
+    return '<div class="line" data-k="' + esc(l.key) + '">' + pic(r) + '<div class="info"><div class="nm">' + esc(l.name) + '</div><div class="sub">' + esc([l.code, attrs].filter(Boolean).join(' · ')) + (l.code || attrs ? ' · ' : '') + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + '</div></div><div class="ctl">' + stepper(l.qty) + '<button class="rm">Remove</button><div class="amt">' + inr(l.rate * l.qty) + '</div></div>' +
+      (nud ? '<div class="nudge">📦 Box of ' + nud.pack + ': add ' + nud.add + ' more (' + inr(nud.amt) + ') <button data-pk="' + nud.to + '">Make it ' + nud.to + '</button></div>' : '') + '</div>';
   }).join('');
   var g = splitByRoute(L), h = '';
   if (g.NS && g.SG) { h += '<div class="subt"><span>' + ROUTE_UI.SG + '</span><span>' + inr(total(g.SG)) + '</span></div><div class="subt"><span>' + ROUTE_UI.NS + '</span><span>' + inr(total(g.NS)) + '</span></div>'; }
   h += '<div class="tot"><span>Grand total <small style="font-weight:400;font-size:12px">(incl. GST)</small></span><span>' + inr(total(L)) + '</span></div>';
   $('tots').innerHTML = h; updWa();
+  /* complete your order */
+  var src = L.map(function(l){ return BYKEY[l.key].i; }), ex = {}; src.forEach(function(i){ ex[i] = 1; });
+  var xs = crossSell(src, D, ex, 6);
+  $('cx').innerHTML = xs.length >= 2 ? '<h2>Complete your order</h2><div class="xs">' + xs.map(xcard).join('') + '</div>' : '';
 }
 var SHOPF = ['shop', 'rname', 'phone', 'town', 'note'];
 function getShop(){ var s = {}; SHOPF.forEach(function(f){ s[f] = $(f).value.trim(); }); return s; }
@@ -627,7 +936,7 @@ $('newOrder').onclick = function(){ cart = {}; save('ns_cart', cart); show('vSho
 
 function foot(){
   var h = '<b>Price lists used (effective date)</b><div class="dates">';
-  CATS.forEach(function(c){ h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
+  CATS.forEach(function(c){ if (c) h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
   h += '</div><p>Your Rate = List Price − 35% (Chimneys, Cooktops &amp; Hobs: − 30%). Rates incl. GST, subject to change. Final bill as per stock and current price list. “Best seller” / “Popular” = our counter’s top-selling items. Product photos: havells.com.</p>' +
     '<p><a href="../">← All price lists</a> · Havells Galaxy – Sangam, Bank Road, Motihari</p>';
   $('foot').innerHTML = h;
