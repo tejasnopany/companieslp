@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#e31e24">
+<title>New Sangam – Havells Order</title>
+<style>
+:root{--red:#e31e24;--red2:#b5121b;--ink:#1d1d1f;--mut:#6b6b70;--line:#e7e7ea;--bg:#f6f6f7;--ok:#0a7d32}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans Devanagari",sans-serif;-webkit-text-size-adjust:100%}
+button,input,textarea,select{font:inherit}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:10px 12px 8px;padding-top:max(10px,env(safe-area-inset-top))}
+.top{display:flex;align-items:center;gap:10px}
+.logo{width:34px;height:34px;border-radius:8px;background:var(--red);color:#fff;font-weight:800;display:grid;place-items:center;font-size:15px;flex:none}
+h1{font-size:17px;margin:0;line-height:1.2}
+h1 small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+.search{margin-top:8px;position:relative}
+.search input{width:100%;padding:11px 36px 11px 12px;border:1px solid #d5d5da;border-radius:10px;background:#fafafa;font-size:16px}
+.search input:focus{outline:2px solid var(--red);border-color:transparent;background:#fff}
+.search .x{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:20px;color:var(--mut);padding:4px 8px;display:none}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid #d5d5da;background:#fff;border-radius:999px;padding:6px 12px;font-size:14px;white-space:nowrap;color:var(--ink)}
+.chip.on{background:var(--red);border-color:var(--red);color:#fff}
+main{padding:10px 10px 110px;max-width:760px;margin:0 auto}
+.meta{font-size:13px;color:var(--mut);margin:2px 2px 8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;gap:10px;align-items:center}
+.card .info{flex:1;min-width:0}
+.nm{font-size:15px;font-weight:600;word-wrap:break-word}
+.sub{font-size:12px;color:var(--mut);margin-top:2px;word-break:break-all}
+.pr{margin-top:4px;font-size:14px}
+.lp{color:var(--mut);text-decoration:line-through;margin-right:6px}
+.rt{color:var(--red2);font-weight:700;font-size:16px}
+.unit{color:var(--mut);font-size:12px;margin-left:4px}
+.step{display:flex;align-items:center;border:1px solid #d5d5da;border-radius:10px;overflow:hidden;flex:none;background:#fff}
+.step button{width:38px;height:38px;border:0;background:#fff;font-size:22px;color:var(--red);line-height:1}
+.step button:active{background:#fde8e8}
+.step input{width:44px;height:38px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-size:16px;-moz-appearance:textfield}
+.step input::-webkit-outer-spin-button,.step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.add{border:1px solid var(--red);color:var(--red);background:#fff;border-radius:10px;height:40px;padding:0 16px;font-weight:600;flex:none}
+.more{display:block;width:100%;padding:12px;border:1px dashed #c8c8cd;border-radius:10px;background:#fff;color:var(--ink);margin:6px 0 12px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--red);color:#fff;display:flex;align-items:center;gap:10px;padding:12px 14px;padding-bottom:max(12px,env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(0,0,0,.15);border:0;width:100%;text-align:left;font-size:15px}
+.bar b{font-size:17px}
+.bar .go{margin-left:auto;background:#fff;color:var(--red);border-radius:999px;padding:8px 14px;font-weight:700;white-space:nowrap}
+.hide{display:none!important}
+.sec{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.sec h2{font-size:16px;margin:0 0 8px}
+.line{display:flex;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.line:first-of-type{border-top:0}
+.line .info{flex:1;min-width:0}
+.rm{border:0;background:none;color:var(--mut);font-size:13px;text-decoration:underline;padding:4px}
+.amt{font-weight:700;white-space:nowrap;text-align:right;min-width:74px}
+.tot{display:flex;justify-content:space-between;font-size:18px;font-weight:800;padding-top:10px;border-top:2px solid var(--ink);margin-top:6px}
+.subt{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);padding-top:4px}
+label{display:block;font-size:13px;color:var(--mut);margin:8px 0 3px}
+.f{width:100%;padding:11px 12px;border:1px solid #d5d5da;border-radius:10px;font-size:16px;background:#fff}
+.f.err{border-color:var(--red);background:#fff5f5}
+.btn{display:block;width:100%;padding:14px;border-radius:12px;border:0;font-size:17px;font-weight:700;margin-top:10px;text-align:center;text-decoration:none}
+.btn.p{background:var(--red);color:#fff}
+.btn.p:disabled{opacity:.6}
+.btn.s{background:#fff;color:#128c3e;border:2px solid #25d366}
+.btn.g{background:#fff;color:var(--ink);border:1px solid #d5d5da}
+.back{border:0;background:none;color:var(--red);font-weight:600;padding:6px 0;font-size:15px}
+.empty{text-align:center;color:var(--mut);padding:30px 10px}
+.ok{text-align:center;padding:24px 10px}
+.ok .tick{width:64px;height:64px;border-radius:50%;background:var(--ok);color:#fff;font-size:36px;display:grid;place-items:center;margin:0 auto 10px}
+.msg{font-size:14px;margin-top:8px;color:var(--mut)}
+.warn{background:#fff7e6;border:1px solid #ffd591;color:#874d00;border-radius:10px;padding:10px;font-size:14px;margin-top:10px}
+footer{font-size:12px;color:var(--mut);padding:10px 4px 20px;line-height:1.55}
+footer a{color:var(--red2)}
+.dates div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted #ddd;padding:2px 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="logo">NS</div>
+    <h1>New Sangam – Havells Order<small>Bank Road, Motihari · Rates incl. GST</small></h1>
+  </div>
+  <div id="shopTop">
+    <div class="search"><input id="q" type="search" placeholder="Search model / name (e.g. Stealth, MCB 32 A, 1.5 sq mm)" autocomplete="off" enterkeyhint="search"><button class="x" id="qx" aria-label="Clear">×</button></div>
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<main>
+  <section id="vShop">
+    <div class="meta" id="meta">Loading price list…</div>
+    <div id="list"></div>
+  </section>
+
+  <section id="vCart" class="hide">
+    <button class="back" id="backShop">← Add more items</button>
+    <div class="sec"><h2>Your order</h2><div id="lines"></div><div id="tots"></div></div>
+    <div class="sec">
+      <h2>Shop details</h2>
+      <label for="shop">Shop name *</label><input class="f" id="shop" autocomplete="organization">
+      <label for="rname">Retailer name</label><input class="f" id="rname" autocomplete="name">
+      <label for="phone">Phone</label><input class="f" id="phone" type="tel" inputmode="tel" autocomplete="tel">
+      <label for="town">Town</label><input class="f" id="town" autocomplete="address-level2">
+      <label for="note">Note (optional)</label><textarea class="f" id="note" rows="2"></textarea>
+    </div>
+    <button class="btn p" id="place">Place Order</button>
+    <a class="btn s" id="wa" href="#" target="_blank" rel="noopener">Send order on WhatsApp</a>
+    <div class="msg" style="text-align:center">Place Order sends your order to our office by email.</div>
+    <div id="cartWarn"></div>
+  </section>
+
+  <section id="vDone" class="hide">
+    <div class="ok">
+      <div class="tick">✓</div>
+      <h2 style="margin:0">Order sent</h2>
+      <div class="msg" id="doneMsg"></div>
+      <a class="btn s" id="wa2" href="#" target="_blank" rel="noopener">Also send on WhatsApp (optional)</a>
+      <button class="btn g" id="newOrder">Start a new order</button>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+
+<button class="bar hide" id="bar"><span>🛒 <b id="bCount">0</b> items · <b id="bTotal">₹0</b> <small>(incl. GST)</small></span><span class="go">View cart →</span></button>
+
+<script id="logic">
+/* ===== order logic (pure; tested with node) ===== */
+var WA_NUMBER = '918310462391';
+var ENDPOINT = {
+  SG: 'https://formsubmit.co/ajax/motihari.sangam@gmail.com',
+  NS: 'https://formsubmit.co/ajax/newsangam.2025@gmail.com'
+};
+var ROUTE_NAME = { SG: 'Sangam', NS: 'New Sangam' };
+function inr(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function fmtDate(d){
+  var m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var h=d.getHours(), mi=('0'+d.getMinutes()).slice(-2), ap=h>=12?'pm':'am'; h=h%12||12;
+  return ('0'+d.getDate()).slice(-2)+'-'+m[d.getMonth()]+'-'+d.getFullYear()+' '+h+':'+mi+' '+ap;
+}
+/* lines: [{code,name,qty,rate,unit,route}] */
+function lineText(l, i){
+  var label = (l.code ? l.code + ' – ' : '') + l.name;
+  return (i+1) + '. ' + label + ' × ' + l.qty + (l.unit ? ' (' + l.unit + ')' : '') + ' @ ' + inr(l.rate) + ' = ' + inr(l.rate * l.qty);
+}
+function total(lines){ return lines.reduce(function(s,l){ return s + l.rate * l.qty; }, 0); }
+function shopBlock(s){
+  var out = ['Shop: ' + s.shop];
+  if (s.rname) out.push('Retailer: ' + s.rname);
+  if (s.phone) out.push('Phone: ' + s.phone);
+  if (s.town) out.push('Town: ' + s.town);
+  return out;
+}
+function waText(shop, lines, date){
+  var t = ['*New Havells Order – New Sangam, Motihari*', 'Date: ' + fmtDate(date)].concat(shopBlock(shop));
+  t.push('');
+  lines.forEach(function(l, i){ t.push(lineText(l, i)); });
+  t.push('');
+  t.push('*Grand total: ' + inr(total(lines)) + ' (incl. GST)*');
+  if (shop.note) t.push('Note: ' + shop.note);
+  return t.join('\n');
+}
+function waLink(shop, lines, date){ return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(waText(shop, lines, date)); }
+function splitByRoute(lines){
+  var g = {};
+  lines.forEach(function(l){ (g[l.route] = g[l.route] || []).push(l); });
+  return g;
+}
+function emailPayload(route, shop, lines, date, orderId){
+  var p = {
+    _subject: 'New Havells order – ' + shop.shop,
+    _template: 'table',
+    _captcha: 'false',
+    'Order for': ROUTE_NAME[route] + (route === 'NS' ? ' (Chimney / Cooktop / Hob)' : ' (Havells products)'),
+    'Order ID': orderId,
+    'Date': fmtDate(date),
+    'Shop name': shop.shop,
+    'Retailer name': shop.rname || '-',
+    'Phone': shop.phone || '-',
+    'Town': shop.town || '-',
+    'Items': lines.map(lineText).join('\n'),
+    'Subtotal': inr(total(lines)) + ' (incl. GST)'
+  };
+  if (shop.note) p['Note'] = shop.note;
+  return p;
+}
+if (typeof module !== 'undefined') module.exports = { lineText: lineText, waText: waText, waLink: waLink, splitByRoute: splitByRoute, emailPayload: emailPayload, total: total, inr: inr, ENDPOINT: ENDPOINT };
+</script>
+
+<script>
+(function(){
+var D = null, CATS = [], NSC = {}, cat = -1, q = '', shown = 60, PAGE = 60;
+var cart = load('ns_cart', {});  /* key -> qty */
+var $ = function(id){ return document.getElementById(id); };
+function load(k, d){ try { var v = JSON.parse(localStorage.getItem(k)); return v || d; } catch(e){ return d; } }
+function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+function key(r){ return r[2] ? r[0] + '|' + r[2] + '|' + r[3] : r[0] + '|' + r[1] + '|' + r[3]; }
+var BYKEY = {};
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
+  D = d; CATS = d.cats; d.route.NS.forEach(function(i){ NSC[i] = 1; });
+  d.p.forEach(function(r){ r.s = (r[1] + ' ' + r[2] + ' ' + r[5] + ' ' + CATS[r[0]]).toLowerCase(); BYKEY[key(r)] = r; });
+  Object.keys(cart).forEach(function(k){ if (!BYKEY[k]) delete cart[k]; });
+  chips(); render(); bar(); foot();
+  if (location.hash === '#cart' && count()) showCart();
+}).catch(function(){ $('meta').textContent = 'Could not load price list. Please check internet and reload.'; });
+
+function chips(){
+  var h = '<button class="chip on" data-c="-1">All</button>';
+  CATS.forEach(function(c, i){ h += '<button class="chip" data-c="' + i + '">' + esc(c) + '</button>'; });
+  $('chips').innerHTML = h;
+  $('chips').onclick = function(e){
+    var b = e.target.closest('.chip'); if (!b) return;
+    cat = +b.dataset.c; shown = PAGE;
+    [].forEach.call($('chips').children, function(x){ x.classList.toggle('on', x === b); });
+    render(); window.scrollTo(0, 0);
+  };
+}
+function matches(){
+  var words = q.toLowerCase().replace(/sq\.?\s*mm/g, 'sq. mm').split(/\s+/).filter(Boolean);
+  return D.p.filter(function(r){
+    if (cat >= 0 && r[0] !== cat) return false;
+    for (var i = 0; i < words.length; i++) if (r.s.indexOf(words[i]) < 0) return false;
+    return true;
+  });
+}
+function card(r){
+  var k = key(r), n = cart[k] || 0;
+  return '<div class="card" data-k="' + esc(k) + '"><div class="info"><div class="nm">' + esc(r[1]) + '</div>' +
+    '<div class="sub">' + esc([r[2], r[5] || CATS[r[0]]].filter(Boolean).join(' · ')) + '</div>' +
+    '<div class="pr"><span class="lp">LP ' + inr(r[3]) + '</span><span class="rt">' + inr(r[4]) + '</span>' + (r[6] ? '<span class="unit">' + esc(r[6]) + '</span>' : '') + '</div></div>' +
+    (n ? stepper(n) : '<button class="add" data-a="add">Add</button>') + '</div>';
+}
+function stepper(n){ return '<div class="step"><button data-a="dec" aria-label="Less">−</button><input inputmode="numeric" pattern="[0-9]*" value="' + n + '" data-a="set"><button data-a="inc" aria-label="More">+</button></div>'; }
+function render(){
+  if (!D) return;
+  var m = matches();
+  $('meta').textContent = m.length + ' item' + (m.length === 1 ? '' : 's') + (cat >= 0 ? ' in ' + CATS[cat] : '') + (q ? ' for “' + q + '”' : '') + ' · Your Rate incl. GST';
+  var h = m.slice(0, shown).map(card).join('');
+  if (m.length > shown) h += '<button class="more" id="more">Show more (' + (m.length - shown) + ' left)</button>';
+  if (!m.length) h = '<div class="empty">No item found. Try a shorter word or another category.</div>';
+  $('list').innerHTML = h;
+  var mb = $('more'); if (mb) mb.onclick = function(){ shown += PAGE * 2; render(); };
+}
+function setQty(k, n){
+  n = Math.max(0, Math.min(9999, parseInt(n, 10) || 0));
+  if (n) cart[k] = n; else delete cart[k];
+  save('ns_cart', cart); bar();
+}
+function onListClick(e){
+  var b = e.target.closest('[data-a]'); if (!b || b.tagName === 'INPUT') return;
+  var c = e.target.closest('[data-k]'); var k = c.dataset.k; var n = cart[k] || 0;
+  if (b.dataset.a === 'add' || b.dataset.a === 'inc') n++;
+  if (b.dataset.a === 'dec') n--;
+  setQty(k, n);
+  if (c.classList.contains('card')) { var r = BYKEY[k]; c.outerHTML = card(r); } else renderCart();
+}
+function onListChange(e){
+  if (e.target.dataset.a !== 'set') return;
+  var c = e.target.closest('[data-k]'); setQty(c.dataset.k, e.target.value);
+  if (c.classList.contains('card')) c.outerHTML = card(BYKEY[c.dataset.k]); else renderCart();
+}
+$('list').addEventListener('click', onListClick); $('list').addEventListener('change', onListChange);
+$('lines').addEventListener('click', function(e){
+  var rm = e.target.closest('.rm'); if (rm) { setQty(rm.closest('[data-k]').dataset.k, 0); renderCart(); return; }
+  onListClick(e);
+});
+$('lines').addEventListener('change', onListChange);
+
+var tmr; $('q').addEventListener('input', function(){
+  clearTimeout(tmr); var v = this.value; $('qx').style.display = v ? 'block' : 'none';
+  tmr = setTimeout(function(){ q = v.trim(); shown = PAGE; render(); }, 150);
+});
+$('qx').onclick = function(){ $('q').value = ''; q = ''; this.style.display = 'none'; render(); $('q').focus(); };
+
+function cartLines(){
+  return Object.keys(cart).map(function(k){
+    var r = BYKEY[k]; if (!r) return null;
+    return { key: k, code: r[2], name: r[1], qty: cart[k], rate: r[4], lp: r[3], unit: r[6], route: NSC[r[0]] ? 'NS' : 'SG' };
+  }).filter(Boolean);
+}
+function count(){ return Object.keys(cart).reduce(function(s, k){ return s + cart[k]; }, 0); }
+function bar(){
+  var n = count(), t = total(cartLines());
+  $('bCount').textContent = n; $('bTotal').textContent = inr(t);
+  $('bar').classList.toggle('hide', !n || !$('vShop').offsetParent);
+}
+$('bar').onclick = showCart;
+function show(v){
+  ['vShop', 'vCart', 'vDone'].forEach(function(x){ $(x).classList.toggle('hide', x !== v); });
+  $('shopTop').classList.toggle('hide', v !== 'vShop');
+  window.scrollTo(0, 0); bar();
+}
+function showCart(){ show('vCart'); renderCart(); fillShop(); if (location.hash !== '#cart') history.pushState(null, '', '#cart'); }
+$('backShop').onclick = function(){ history.back(); };
+window.addEventListener('popstate', function(){ if (location.hash !== '#cart' && !$('vCart').classList.contains('hide')) { show('vShop'); render(); } });
+
+function renderCart(){
+  var L = cartLines();
+  if (!L.length) { $('lines').innerHTML = '<div class="empty">Cart is empty.</div>'; $('tots').innerHTML = ''; updWa(); return; }
+  $('lines').innerHTML = L.map(function(l){
+    return '<div class="line" data-k="' + esc(l.key) + '"><div class="info"><div class="nm" style="font-size:14px">' + esc(l.name) + '</div><div class="sub">' + esc(l.code || '') + ' @ ' + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + ' · <button class="rm">Remove</button></div></div>' + stepper(l.qty) + '<div class="amt">' + inr(l.rate * l.qty) + '</div></div>';
+  }).join('');
+  var g = splitByRoute(L), h = '';
+  if (g.NS && g.SG) { h += '<div class="subt"><span>Havells items (Sangam)</span><span>' + inr(total(g.SG)) + '</span></div><div class="subt"><span>Chimney / Hob items (New Sangam)</span><span>' + inr(total(g.NS)) + '</span></div>'; }
+  h += '<div class="tot"><span>Grand total <small style="font-weight:400;font-size:12px">(incl. GST)</small></span><span>' + inr(total(L)) + '</span></div>';
+  $('tots').innerHTML = h; updWa();
+}
+var SHOPF = ['shop', 'rname', 'phone', 'town', 'note'];
+function getShop(){ var s = {}; SHOPF.forEach(function(f){ s[f] = $(f).value.trim(); }); return s; }
+function fillShop(){ var s = load('ns_shop', {}); SHOPF.forEach(function(f){ if (f !== 'note' && s[f] && !$(f).value) $(f).value = s[f]; }); }
+SHOPF.forEach(function(f){ $(f).addEventListener('input', function(){ var s = getShop(); delete s.note; save('ns_shop', s); $('shop').classList.remove('err'); updWa(); }); });
+function updWa(){ $('wa').href = waLink(getShop(), cartLines(), new Date()); }
+$('wa').addEventListener('click', function(e){ if (!checkShop()) { e.preventDefault(); } else updWa(); });
+function checkShop(){
+  if (!cartLines().length) { warn('Your cart is empty.'); return false; }
+  if (!$('shop').value.trim()) { $('shop').classList.add('err'); $('shop').focus(); warn('Please enter your shop name.'); return false; }
+  warn(''); return true;
+}
+function warn(t){ $('cartWarn').innerHTML = t ? '<div class="warn">' + esc(t) + '</div>' : ''; }
+
+$('place').onclick = function(){
+  if (!checkShop()) return;
+  var shop = getShop(), L = cartLines(), date = new Date();
+  var oid = 'NS' + date.getFullYear().toString().slice(2) + ('0' + (date.getMonth() + 1)).slice(-2) + ('0' + date.getDate()).slice(-2) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+  var g = splitByRoute(L), routes = Object.keys(g).sort().reverse();
+  var btn = this; btn.disabled = true; btn.textContent = 'Sending…';
+  Promise.all(routes.map(function(rt){
+    return fetch(ENDPOINT[rt], { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(emailPayload(rt, shop, g[rt], date, oid)) })
+      .then(function(r){ return r.json(); }).then(function(j){ return { rt: rt, ok: j && (j.success === true || j.success === 'true'), msg: j && j.message }; })
+      .catch(function(err){ return { rt: rt, ok: false, msg: String(err) }; });
+  })).then(function(res){
+    btn.disabled = false; btn.textContent = 'Place Order';
+    var bad = res.filter(function(x){ return !x.ok; });
+    var wl = waLink(shop, L, date);
+    if (bad.length === res.length) { warn('Could not send the order by email (' + (bad[0].msg || 'network error') + '). Please tap “Send order on WhatsApp” instead.'); return; }
+    $('wa2').href = wl;
+    $('doneMsg').innerHTML = 'Order ID <b>' + oid + '</b> · ' + inr(total(L)) + ' (incl. GST)<br>' +
+      res.map(function(x){ return (x.ok ? '✓ Sent to ' : '✗ Not sent to ') + ROUTE_NAME[x.rt]; }).join('<br>') +
+      (bad.length ? '<br><b>Please send this order on WhatsApp so nothing is missed.</b>' : '');
+    if (!bad.length) { cart = {}; save('ns_cart', cart); }
+    history.replaceState(null, '', location.pathname); show('vDone');
+  });
+};
+$('newOrder').onclick = function(){ cart = {}; save('ns_cart', cart); show('vShop'); render(); };
+
+function foot(){
+  var h = '<b>Price lists used (effective date)</b><div class="dates">';
+  CATS.forEach(function(c){ h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
+  h += '</div><p>Your Rate = List Price − 35% (Chimneys, Cooktops &amp; Hobs: − 30%). Rates incl. GST, subject to change. Final bill as per stock and current price list.</p>' +
+    '<p><a href="../">← All price lists</a> · New Sangam, Havells Galaxy, Bank Road, Motihari</p>';
+  $('foot').innerHTML = h;
+}
+})();
+</script>
+</body>
+</html>
