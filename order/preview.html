@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Mobile preview</title>
-<style>body{margin:8px;font:13px sans-serif;background:#ddd}.row{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+<style>body{margin:8px;font:13px sans-serif;background:#ddd}.ph{zoom:.72}.row{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
 .ph{background:#000;padding:6px;border-radius:14px}.ph b{color:#fff;display:block;text-align:center;padding:2px}iframe{border:0;background:#fff;display:block;height:760px}
 #rep{background:#fff;padding:8px;white-space:pre-wrap;font:12px monospace}</style></head><body>
 <div id="rep">checking…</div>
@@ -7,7 +7,7 @@
 <script>
 var W=[360,375,390];
 function mk(row,w,hash){var d=document.createElement('div');d.className='ph';d.innerHTML='<b>'+w+'px '+(hash||'list')+'</b>';var f=document.createElement('iframe');f.style.width=w+'px';f.src='./'+(hash||'');d.appendChild(f);document.getElementById(row).appendChild(d);return f;}
-var fr=[];W.forEach(function(w){fr.push(mk('r1',w,''));});W.forEach(function(w){fr.push(mk('r2',w,'#cart'));});
+var v=(location.search.match(/v=(\w+)/)||[])[1]||'list';var hs={list:'',cart:'#cart',done:'#demo-done'}[v];var fr=[];W.forEach(function(w){fr.push(mk('r1',w,hs));});
 setTimeout(function(){var out=[];fr.forEach(function(f){try{var d=f.contentDocument,el=d.documentElement;var small=[];d.querySelectorAll('button,input,a,textarea').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.height&&(r.height<44)&&b.offsetParent)small.push((b.className||b.tagName)+':'+Math.round(r.width)+'x'+Math.round(r.height));});
 var fs=[].map.call(d.querySelectorAll('input,textarea'),function(i){return parseFloat(getComputedStyle(i).fontSize);});
 out.push(f.style.width+' '+(f.src.indexOf('#cart')>0?'cart':'list')+': docWidth='+el.scrollWidth+' viewport='+el.clientWidth+(el.scrollWidth>el.clientWidth?' OVERFLOW':' no-h-scroll')+' | min input font='+Math.min.apply(null,fs)+'px | visible targets <44px: '+(small.length?[...new Set(small)].slice(0,6).join(', '):'none'));}catch(e){out.push('err '+e);}});document.getElementById('rep').textContent=out.join('\n');},6000);
