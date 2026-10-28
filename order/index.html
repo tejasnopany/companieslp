@@ -62,6 +62,21 @@ main{padding:8px 10px calc(112px + env(safe-area-inset-bottom));max-width:780px;
 .bdg.b2{background:#fff3d6;color:#8a5a00}
 .bdg.b1{background:#eaf4ff;color:#0b5aa6}
 .bdg.b3{background:#f0f0f2;color:#5b5b66}
+.obc{background:#fff;border:1px solid #eee;border-radius:12px;padding:10px 12px;margin-bottom:10px;cursor:pointer}
+.obc .orow{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.obc .oid{font-weight:700;font-size:13.5px}
+.obc .odt{font-size:11.5px;color:#777;white-space:nowrap}
+.obc .oshop{font-size:12.5px;color:#444;margin-top:2px}
+.obc .oamt{font-weight:700;font-size:13px;margin-top:4px}
+.ost{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:6px;margin:4px 6px 0 0}
+.ost.ok{background:#e8f7ee;color:#1a7a3c}
+.ost.fl{background:#fdecec;color:#b3232a}
+.ost.rc{background:#eaf4ff;color:#0b5aa6}
+.obd{margin-top:8px;border-top:1px dashed #e5e5e5;padding-top:8px}
+.obd .oln{font-size:12px;color:#333;padding:2px 0}
+.obd .obt{font-weight:700;font-size:12.5px;margin-top:6px}
+.obd .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.obd .acts button,.obd .acts a{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid #ddd;background:#fafafa;cursor:pointer;text-decoration:none;color:#333}
 .bot{grid-column:2;display:flex;align-items:center;gap:8px;justify-content:space-between;flex-wrap:wrap}
 .pr{min-width:0;line-height:1.2}
 .rt{color:var(--red2);font-weight:800;font-size:17px}
@@ -226,7 +241,8 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
 <div class="brand">
   <div class="mark">SG</div>
   <h1>Havells Galaxy – Sangam<small>Bank Road, Motihari · Retailer order · Rates incl. GST</small></h1>
-  <a href="../" style="margin-left:auto;color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;opacity:.92;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:9px;flex:none">← Price lists</a>
+  <a href="#orders" id="bookBtn" style="margin-left:auto;color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;opacity:.92;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:9px;flex:none">Order book</a>
+  <a href="../" style="color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;opacity:.92;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:9px;flex:none">← Price lists</a>
 </div>
 <div class="tool" id="shopTop">
   <div class="srow">
@@ -272,6 +288,15 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
       <div class="msg" id="doneMsg"></div>
       <a class="btn s" id="wa2" href="#" target="_blank" rel="noopener">Also send on WhatsApp (optional)</a>
       <button class="btn g" id="newOrder">Start a new order</button>
+      <button class="btn g" id="doneBook">View order book</button>
+    </div>
+  </section>
+
+  <section id="vOrders" class="hide">
+    <button class="back" id="backShop2">← Back to products</button>
+    <div class="sec"><h2>Order book</h2>
+      <div class="msg" style="margin-bottom:8px">Orders you placed from this device, newest first. Orders sent only on WhatsApp are not listed here.</div>
+      <div id="bookList"></div>
     </div>
   </section>
 
@@ -919,7 +944,7 @@ function bar(){
 }
 $('bar').onclick = showCart;
 function show(v){
-  ['vShop', 'vCart', 'vDone'].forEach(function(x){ $(x).classList.toggle('hide', x !== v); });
+  ['vShop', 'vCart', 'vDone', 'vOrders'].forEach(function(x){ $(x).classList.toggle('hide', x !== v); });
   $('shopTop').classList.toggle('hide', v !== 'vShop');
   $('sug').classList.remove('on');
   window.scrollTo(0, 0); bar();
@@ -992,11 +1017,61 @@ $('place').onclick = function(){
     $('doneMsg').innerHTML = 'Order ID <b>' + oid + '</b><br>' + inr(total(L)) + ' (incl. GST)<br>' +
       (res.length > 1 ? res.map(function(x){ return (x.ok ? '✓ ' : '✗ ') + ROUTE_UI[x.rt] + (x.ok ? ' – received' : ' – not sent'); }).join('<br>') : '✓ Sent to our office') +
       (bad.length ? '<br><b>Please send this order on WhatsApp so nothing is missed.</b>' : '');
+    if (bad.length < res.length) {
+      var bk = load('ns_orders', []);
+      bk.unshift({ id: oid, ts: date.toISOString(), shop: shop.shop || '', rname: shop.rname || '', town: shop.town || '',
+        lines: L.map(function(l){ return { code: l.code || '', name: l.name, qty: l.qty, rate: l.rate, unit: l.unit || '', route: l.route }; }),
+        amt: total(L), routes: res.map(function(x){ return (x.ok ? 1 : 0) + ROUTE_UI[x.rt]; }), recv: null });
+      save('ns_orders', bk.slice(0, 50));
+    }
     if (!bad.length) { cart = {}; save('ns_cart', cart); }
     history.replaceState(null, '', location.pathname); show('vDone');
   });
 };
 $('newOrder').onclick = function(){ cart = {}; save('ns_cart', cart); show('vShop'); render(); };
+
+/* ---------- order book (on-device record of emailed orders) ---------- */
+function fmtTs(iso){ try { return fmtDate(new Date(iso)); } catch (e) { return iso; } }
+function renderBook(){
+  var bk = load('ns_orders', []), el = $('bookList');
+  if (!bk.length) { el.innerHTML = '<div class="msg">No orders placed from this device yet.</div>'; return; }
+  el.innerHTML = bk.map(function(o, i){
+    var chips = (o.routes || []).map(function(r){
+      var ok = r.charAt(0) === '1';
+      return '<span class="ost ' + (ok ? 'ok' : 'fl') + '">' + (ok ? '✓ ' : '✗ ') + esc(r.slice(1)) + (ok ? ' sent' : ' not sent') + '</span>';
+    }).join('');
+    if (o.recv) chips += '<span class="ost rc">Received ✓ (you marked, ' + esc(fmtTs(o.recv)) + ')</span>';
+    return '<div class="obc" data-i="' + i + '"><div class="orow"><span class="oid">' + esc(o.id) + '</span><span class="odt">' + esc(fmtTs(o.ts)) + '</span></div>' +
+      '<div class="oshop">' + esc(o.shop) + (o.rname ? ' · ' + esc(o.rname) : '') + (o.town ? ' · ' + esc(o.town) : '') + '</div>' +
+      '<div class="oamt">' + inr(o.amt) + ' <span style="font-weight:400;color:#777;font-size:11.5px">(incl. GST)</span></div>' + chips +
+      '<div class="obd hide" id="obd' + i + '"></div></div>';
+  }).join('');
+}
+$('bookList') && $('bookList').addEventListener('click', function(e){
+  var card = e.target.closest('.obc'); if (!card) return;
+  if (e.target.closest('button') || e.target.closest('a')) return;
+  var i = +card.getAttribute('data-i'), d = $('obd' + i), bk = load('ns_orders', []), o = bk[i];
+  if (!d) return;
+  if (!d.classList.contains('hide')) { d.classList.add('hide'); return; }
+  d.innerHTML = o.lines.map(function(l, j){ return '<div class="oln">' + esc(lineText(l, j)) + '</div>'; }).join('') +
+    '<div class="obt">Total: ' + inr(o.amt) + ' (incl. GST)</div>' +
+    '<div class="acts">' +
+      (o.recv
+        ? '<button data-act="unrecv">Undo received mark</button>'
+        : '<button data-act="recv">Mark received</button>') +
+      '<a href="' + esc(waLink({ shop: o.shop, rname: o.rname, town: o.town, note: '' }, o.lines, new Date(o.ts))) + '" target="_blank" rel="noopener">Send again on WhatsApp</a>' +
+    '</div>';
+  d.classList.remove('hide');
+  d.querySelector('[data-act]').onclick = function(){
+    var bk2 = load('ns_orders', []);
+    if (!bk2[i]) return;
+    bk2[i].recv = bk2[i].recv ? null : new Date().toISOString();
+    save('ns_orders', bk2); renderBook();
+  };
+});
+$('bookBtn').addEventListener('click', function(e){ e.preventDefault(); renderBook(); show('vOrders'); });
+$('doneBook').addEventListener('click', function(){ renderBook(); show('vOrders'); });
+$('backShop2').addEventListener('click', function(){ show('vShop'); });
 
 function foot(){
   var h = '<b>Price lists used (effective date)</b><div class="dates">';
