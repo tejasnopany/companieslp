@@ -207,6 +207,9 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
 .sug .t small{display:block;color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
 .sug .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13.5px}
 .sug .x{flex:none;width:36px;height:44px;border:0;background:none;color:var(--mut);font-size:20px}
+.cnote{background:#fff8e6;border:1px solid #f0d98c;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13.5px;line-height:1.5}
+.cnote.warn{background:#fdeeee;border-color:#f3c2c4}
+.cnote .mini{margin-top:6px}
 .nudge{grid-column:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:#5b5b63;background:#f6f6f8;border-radius:10px;padding:6px 8px;margin-top:2px}
 .nudge button{min-height:44px;padding:0 10px;border-radius:9px;border:1px solid #c9c9cf;background:#fff;font-weight:700;font-size:13px}
 .cx{margin:0 0 10px}
@@ -507,6 +510,7 @@ if (typeof module !== 'undefined') module.exports = { score: score, norm: norm, 
 var D = null, CATS = [], NSC = {}, cat = -1, q = '', shown = 30, PAGE = 30;
 var sort = 'pop', F = { t: {}, x: {}, y: {}, b: {}, pmin: '', pmax: '' };
 var cart = load('ns_cart', {});  /* key -> qty (same key format as v1/v2) */
+var PRICE_CHANGES = [], CART_REVIEW = [];  /* cart price-refresh notices (filled at load) */
 var $ = function(id){ return document.getElementById(id); };
 function load(k, d){ try { var v = JSON.parse(localStorage.getItem(k)); return v || d; } catch(e){ return d; } }
 function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
@@ -562,8 +566,26 @@ fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }
   }
   CATS = d.cats; d.route.NS.forEach(function(i){ NSC[i] = 1; });
   d.p.forEach(function(r, i){ r.h = hayOf(r, d); r.i = i; BYKEY[key(r)] = r; });
-  Object.keys(cart).forEach(function(k){ if (!BYKEY[k]) delete cart[k]; });
+  /* Cart price refresh: keys embed LP, so a price update changes keys. Migrate stored
+     lines to the current row by identity (category + code/name) so quantities survive
+     price updates; flag changed prices, and keep unmatched lines for review instead of
+     dropping them. cartLines() ignores non-BYKEY keys, so review lines never reach
+     totals or the order - submitted prices are always the current ones. */
+  Object.keys(cart).forEach(function(k){
+    if (BYKEY[k]) return;
+    var parts = k.split('|'), qty = cart[k], ident = parts[1];
+    var matches = d.p.filter(function(r){ return String(r[0]) === parts[0] && (r[2] ? r[2] === ident : r[1] === ident); });
+    if (matches.length === 1) {
+      var nk = key(matches[0]);
+      delete cart[k];
+      cart[nk] = (cart[nk] || 0) + qty;
+      if (String(matches[0][3]) !== parts[2]) PRICE_CHANGES.push({ name: matches[0][1], oldLP: +parts[2] || 0, newLP: matches[0][3] });
+    } else {
+      CART_REVIEW.push({ key: k, ident: ident, qty: qty, reason: matches.length ? 'matches ' + matches.length + ' current variants - pick the right one again' : 'no longer in the price list' });
+    }
+  });
   save('ns_cart', cart);
+  if (PRICE_CHANGES.length || CART_REVIEW.length) toast('Cart updated to current prices' + (CART_REVIEW.length ? ' - some items need review' : ''));
   chips(); render(); bar(); foot();
   var h = location.hash;
   if (h === '#cart' && count()) showCart();
@@ -895,10 +917,17 @@ function showCart(){ closeSh(); show('vCart'); renderCart(); fillShop(); if (loc
 $('backShop').onclick = function(){ if (location.hash === '#cart') history.back(); else { show('vShop'); render(); } };
 window.addEventListener('popstate', function(){ if (location.hash !== '#cart' && !$('vCart').classList.contains('hide')) { show('vShop'); render(); } });
 
+function cartNotice(){
+  var h = '';
+  if (PRICE_CHANGES.length) h += '<div class="cnote"><b>Prices updated to current rates:</b><br>' + PRICE_CHANGES.map(function(c){ return esc(c.name) + ' - was ' + inr(c.oldLP) + ', now ' + inr(c.newLP); }).join('<br>') + '</div>';
+  if (CART_REVIEW.length) h += '<div class="cnote warn"><b>Needs review (not in the total):</b><br>' + CART_REVIEW.map(function(c){ return esc(c.ident) + ' x ' + c.qty + ' - ' + esc(c.reason); }).join('<br>') + '<br><button class="mini" onclick="dismissReview()">Remove from cart</button></div>';
+  return h;
+}
+window.dismissReview = function(){ CART_REVIEW.forEach(function(c){ delete cart[c.key]; }); CART_REVIEW = []; save('ns_cart', cart); renderCart(); };
 function renderCart(){
-  var L = cartLines();
-  if (!L.length) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; $('cx').innerHTML = ''; updWa(); return; }
-  $('lines').innerHTML = L.map(function(l){
+  var L = cartLines(), notice = cartNotice();
+  if (!L.length && !notice) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; $('cx').innerHTML = ''; updWa(); return; }
+  $('lines').innerHTML = notice + L.map(function(l){
     var r = BYKEY[l.key], nud = packNudge(r, l.qty), attrs = (r[14] || []).join(' · ');
     return '<div class="line" data-k="' + esc(l.key) + '">' + pic(r) + '<div class="info"><div class="nm">' + esc(l.name) + '</div><div class="sub">' + esc([l.code, attrs].filter(Boolean).join(' · ')) + (l.code || attrs ? ' · ' : '') + inr(l.rate) + (l.unit ? ' ' + esc(l.unit) : '') + '</div></div><div class="ctl">' + stepper(l.qty) + '<button class="rm">Remove</button><div class="amt">' + inr(l.rate * l.qty) + '</div></div>' +
       (nud ? '<div class="nudge">📦 Box of ' + nud.pack + ': add ' + nud.add + ' more (' + inr(nud.amt) + ') <button data-pk="' + nud.to + '">Make it ' + nud.to + '</button></div>' : '') + '</div>';
