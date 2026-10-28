@@ -361,7 +361,7 @@ if (typeof module !== 'undefined') module.exports = { BRAND: BRAND, ROUTE_UI: RO
 /* ===== search, variant & recommendation logic (pure; tested with node) ===== */
 /* row: [cat, name, code, lp, rate, group, unit, rank, img, badge, facets{t,x,y,b}, extra, pack, fam, attrs]
    fam: [name, cat, dims, rank, badge, img, [rowIdx], rangeLabel] */
-var CAT_SYN = {'Fans':'fan fans pankha','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer water heater','Air Coolers':'cooler','Pumps':'pump motor','Chimneys':'chimney kitchen hood','Water Purifiers':'water purifier ro uv uf filter','Cooktops & Hobs':'gas stove chulha cooktop hob','Wires & Cables':'wire wires cable','MCB, RCCB & DB':'mcb db switchgear','Switches':'switch switches modular','LED Lighting':'led light','Professional Luminaires':'light luminaire'};
+var CAT_SYN = {'Fans':'fan fans pankha pankhe','Small Appliances & Heaters':'appliance','Water Heaters':'geyser gizer geezer water heater','Air Coolers':'cooler air cooler kular','Pumps':'pump motor','Chimneys':'chimney chimni kitchen hood','Water Purifiers':'water purifier ro uv uf filter','Cooktops & Hobs':'gas stove chulha cooktop hob','Wires & Cables':'wire wires cable taar','MCB, RCCB & DB':'mcb db switchgear','Switches':'switch switches modular','LED Lighting':'led light batti','Professional Luminaires':'light luminaire'};
 function norm(s){
   s = String(s || '').toLowerCase()
     .replace(/[é]/g, 'e').replace(/’|'/g, '')
@@ -377,13 +377,13 @@ function norm(s){
     .replace(/[^a-z0-9.+]+/g, ' ').replace(/\s\.|\.\s|\.$/g, ' ');
   return s.replace(/\s+/g, ' ').trim();
 }
-var ALIAS = { bulb: 'lamp', bulbs: 'lamp', lamps: 'lamp', geyser: 'geyser', wires: 'wire', fans: 'fan', switches: 'switch', sockets: 'socket', plates: 'plate', '48in': '1200mm', '56in': '1400mm', '36in': '900mm', '24in': '600mm' };
+var ALIAS = { bulb: 'lamp', bulbs: 'lamp', lamps: 'lamp', geyser: 'geyser', geezer: 'geyser', gizer: 'geyser', wires: 'wire', taar: 'wire', tar: 'wire', fans: 'fan', pankha: 'fan', pankhe: 'fan', switches: 'switch', sockets: 'socket', plates: 'plate', istri: 'iron', press: 'iron', mixie: 'mixer', mixi: 'mixer', torches: 'torch', tubelight: 'batten', chimni: 'chimney', kular: 'cooler', '48in': '1200mm', '56in': '1400mm', '36in': '900mm', '24in': '600mm' };
 function qtokens(q){ return norm(q).split(' ').filter(Boolean).map(function(t){ return ALIAS[t] || t; }); }
 function hayOf(r, D){
   var f = r[10] || {}, fam = D.f[r[13]], c = D.cats[r[0]];
   var grp = (String(r[5] || '').match(/\d+\s*W\b/g) || []).length > 1 ? '' : r[5];   /* skip garbled multi-wattage table headers */
   var s = [r[1], r[2], grp, c, CAT_SYN[c], f.t, f.x, f.y, f.b, r[11], fam ? fam[0] : '', (r[14] || []).join(' ')].join(' ');
-  if (/\b(b22|e27|e14|lamp|bulb)\b/i.test(s)) s += ' lamp bulb';
+  if (/\b(b22|e27|e14|lamp|bulb)\b/i.test(s) && !/gate light|wall light|lantern|torch|pendant|lamp base|table lamp|desktop light/i.test(r[1] + ' ' + (r[5] || ''))) s += ' lamp bulb';   /* fixtures that take a B22 lamp are not bulbs */
   if (/sq mm/.test(f.x || '')) s += ' ' + f.x.replace(' sq mm', 'mm');
   if (/lifeline|hrfr/i.test(s) && /90 m/.test(r[6] || '')) s += ' house wire lifeline';
   return ' ' + norm(s) + ' ';
