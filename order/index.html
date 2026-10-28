@@ -295,7 +295,7 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
   <section id="vOrders" class="hide">
     <button class="back" id="backShop2">← Back to products</button>
     <div class="sec"><h2>Order book</h2>
-      <div class="msg" style="margin-bottom:8px">Orders you placed from this device, newest first. Orders sent only on WhatsApp are not listed here.</div>
+      <div class="msg" style="margin-bottom:8px">Orders you placed from this device, newest first. Orders sent only on WhatsApp are not listed here. This history is stored only in this browser on this device - clearing browser data erases it. For order status or billing, quote your Order ID to the shop.</div>
       <div id="bookList"></div>
     </div>
   </section>
@@ -1015,7 +1015,7 @@ $('place').onclick = function(){
     if (bad.length === res.length) { warn('Could not send the order by email (' + (bad[0].msg || 'network error') + '). Please tap “Send order on WhatsApp” instead.'); return; }
     $('wa2').href = wl;
     $('doneMsg').innerHTML = 'Order ID <b>' + oid + '</b><br>' + inr(total(L)) + ' (incl. GST)<br>' +
-      (res.length > 1 ? res.map(function(x){ return (x.ok ? '✓ ' : '✗ ') + ROUTE_UI[x.rt] + (x.ok ? ' – received' : ' – not sent'); }).join('<br>') : '✓ Sent to our office') +
+      (res.length > 1 ? res.map(function(x){ return (x.ok ? '✓ ' : '✗ ') + ROUTE_UI[x.rt] + (x.ok ? ' – emailed' : ' – not sent'); }).join('<br>') : '✓ Emailed to our office') +
       (bad.length ? '<br><b>Please send this order on WhatsApp so nothing is missed.</b>' : '');
     if (bad.length < res.length) {
       var bk = load('ns_orders', []);
@@ -1038,9 +1038,9 @@ function renderBook(){
   el.innerHTML = bk.map(function(o, i){
     var chips = (o.routes || []).map(function(r){
       var ok = r.charAt(0) === '1';
-      return '<span class="ost ' + (ok ? 'sok' : 'sfl') + '">' + (ok ? '✓ ' : '✗ ') + esc(r.slice(1)) + (ok ? ' sent' : ' not sent') + '</span>';
+      return '<span class="ost ' + (ok ? 'sok' : 'sfl') + '">' + (ok ? '✓ ' : '✗ ') + esc(r.slice(1)) + (ok ? ' emailed' : ' not emailed') + '</span>';
     }).join('');
-    if (o.recv) chips += '<span class="ost src">Received ✓ (you marked, ' + esc(fmtTs(o.recv)) + ')</span>';
+    if (o.recv) chips += '<span class="ost src">Goods received ✓ (you marked, ' + esc(fmtTs(o.recv)) + ')</span>';
     return '<div class="obc" data-i="' + i + '"><div class="orow"><span class="oid">' + esc(o.id) + '</span><span class="odt">' + esc(fmtTs(o.ts)) + '</span></div>' +
       '<div class="oshop">' + esc(o.shop) + (o.rname ? ' · ' + esc(o.rname) : '') + (o.town ? ' · ' + esc(o.town) : '') + '</div>' +
       '<div class="oamt">' + inr(o.amt) + ' <span style="font-weight:400;color:#777;font-size:11.5px">(incl. GST)</span></div>' + chips +
@@ -1055,12 +1055,21 @@ $('bookList') && $('bookList').addEventListener('click', function(e){
   if (!d.classList.contains('hide')) { d.classList.add('hide'); return; }
   d.innerHTML = o.lines.map(function(l, j){ return '<div class="oln">' + esc(lineText(l, j)) + '</div>'; }).join('') +
     '<div class="obt">Total: ' + inr(o.amt) + ' (incl. GST)</div>' +
-    '<div class="acts">' +
-      (o.recv
-        ? '<button data-act="unrecv">Undo received mark</button>'
-        : '<button data-act="recv">Mark received</button>') +
-      '<a href="' + esc(waLink({ shop: o.shop, rname: o.rname, town: o.town, note: '' }, o.lines, new Date(o.ts))) + '" target="_blank" rel="noopener">Send again on WhatsApp</a>' +
-    '</div>';
+    (function(){
+      var REV = { 'Havells items': 'SG', 'Chimney / hob items': 'NS' };
+      var failed = (o.routes || []).filter(function(r){ return r.charAt(0) === '0'; }).map(function(r){ return REV[r.slice(1)]; });
+      var resend = '';
+      if (failed.length) {
+        var fl = o.lines.filter(function(l){ return failed.indexOf(l.route) >= 0; });
+        resend = '<a href="' + esc(waLink({ shop: o.shop, rname: o.rname, town: o.town, note: '' }, fl, new Date(o.ts))) + '" target="_blank" rel="noopener">Send unsent items on WhatsApp</a>';
+      }
+      return '<div class="acts">' +
+        (o.recv
+          ? '<button data-act="unrecv">Undo goods-received mark</button>'
+          : '<button data-act="recv">Mark goods received</button>') +
+        resend +
+      '</div>';
+    })();
   d.classList.remove('hide');
   d.querySelector('[data-act]').onclick = function(){
     var bk2 = load('ns_orders', []);
