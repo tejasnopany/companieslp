@@ -210,6 +210,7 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
 .cnote{background:#fff8e6;border:1px solid #f0d98c;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13.5px;line-height:1.5}
 .cnote.warn{background:#fdeeee;border-color:#f3c2c4}
 .cnote .mini{margin-top:6px}
+.cnote .mut{color:var(--mut);font-size:12.5px}
 .nudge{grid-column:2;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:#5b5b63;background:#f6f6f8;border-radius:10px;padding:6px 8px;margin-top:2px}
 .nudge button{min-height:44px;padding:0 10px;border-radius:9px;border:1px solid #c9c9cf;background:#fff;font-weight:700;font-size:13px}
 .cx{margin:0 0 10px}
@@ -511,6 +512,7 @@ var D = null, CATS = [], NSC = {}, cat = -1, q = '', shown = 30, PAGE = 30;
 var sort = 'pop', F = { t: {}, x: {}, y: {}, b: {}, pmin: '', pmax: '' };
 var cart = load('ns_cart', {});  /* key -> qty (same key format as v1/v2) */
 var PRICE_CHANGES = [], CART_REVIEW = [];  /* cart price-refresh notices (filled at load) */
+var REVIEW_ACK = false;  /* retailer confirmed order without the review lines */
 var $ = function(id){ return document.getElementById(id); };
 function load(k, d){ try { var v = JSON.parse(localStorage.getItem(k)); return v || d; } catch(e){ return d; } }
 function save(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
@@ -579,7 +581,7 @@ fetch('products.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }
       var nk = key(matches[0]);
       delete cart[k];
       cart[nk] = (cart[nk] || 0) + qty;
-      if (String(matches[0][3]) !== parts[2]) PRICE_CHANGES.push({ name: matches[0][1], oldLP: +parts[2] || 0, newLP: matches[0][3] });
+      if (String(matches[0][3]) !== parts[2]) PRICE_CHANGES.push({ name: matches[0][1], oldLP: +parts[2] || 0, newLP: matches[0][3], newRate: matches[0][4] });
     } else {
       CART_REVIEW.push({ key: k, ident: ident, qty: qty, reason: matches.length ? 'matches ' + matches.length + ' current variants - pick the right one again' : 'no longer in the price list' });
     }
@@ -919,11 +921,14 @@ window.addEventListener('popstate', function(){ if (location.hash !== '#cart' &&
 
 function cartNotice(){
   var h = '';
-  if (PRICE_CHANGES.length) h += '<div class="cnote"><b>Prices updated to current rates:</b><br>' + PRICE_CHANGES.map(function(c){ return esc(c.name) + ' - was ' + inr(c.oldLP) + ', now ' + inr(c.newLP); }).join('<br>') + '</div>';
-  if (CART_REVIEW.length) h += '<div class="cnote warn"><b>Needs review (not in the total):</b><br>' + CART_REVIEW.map(function(c){ return esc(c.ident) + ' x ' + c.qty + ' - ' + esc(c.reason); }).join('<br>') + '<br><button class="mini" onclick="dismissReview()">Remove from cart</button></div>';
+  if (PRICE_CHANGES.length) h += '<div class="cnote"><b>List prices changed since your last visit - current rates apply:</b><br>' + PRICE_CHANGES.map(function(c){ return esc(c.name) + ' - list price ' + inr(c.oldLP) + ' to ' + inr(c.newLP) + ', your current rate ' + inr(c.newRate); }).join('<br>') + '</div>';
+  if (CART_REVIEW.length && REVIEW_ACK) h += '<div class="cnote"><b>Not included in this order (you confirmed):</b><br>' + CART_REVIEW.map(function(c){ return esc(c.ident) + ' x ' + c.qty; }).join('<br>') + '<br><button class="mini" onclick="unackReview()">Review again</button></div>';
+  else if (CART_REVIEW.length) h += '<div class="cnote warn"><b>Needs review (not in the total):</b><br>' + CART_REVIEW.map(function(c){ return esc(c.ident) + ' x ' + c.qty + ' - ' + esc(c.reason); }).join('<br>') + '<br><button class="mini" onclick="dismissReview()">Remove from cart</button> <button class="mini" onclick="ackReview()">Order without these items</button></div>';
   return h;
 }
 window.dismissReview = function(){ CART_REVIEW.forEach(function(c){ delete cart[c.key]; }); CART_REVIEW = []; save('ns_cart', cart); renderCart(); };
+window.ackReview = function(){ REVIEW_ACK = true; renderCart(); };
+window.unackReview = function(){ REVIEW_ACK = false; renderCart(); };
 function renderCart(){
   var L = cartLines(), notice = cartNotice();
   if (!L.length && !notice) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; $('cx').innerHTML = ''; updWa(); return; }
@@ -949,6 +954,7 @@ function updWa(){ $('wa').href = waLink(getShop(), cartLines(), new Date()); }
 $('wa').addEventListener('click', function(e){ if (!checkShop()) { e.preventDefault(); } else updWa(); });
 function checkShop(){
   if (!cartLines().length) { warn('Your cart is empty.'); return false; }
+  if (CART_REVIEW.length && !REVIEW_ACK) { warn('Some items in your cart need review - remove them or tap "Order without these items" above, so nothing you wanted is left out.'); return false; }
   if (!$('shop').value.trim()) { $('shop').classList.add('err'); $('shop').focus(); warn('Please enter your shop name.'); return false; }
   warn(''); return true;
 }
