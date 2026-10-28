@@ -926,9 +926,9 @@ function cartNotice(){
   else if (CART_REVIEW.length) h += '<div class="cnote warn"><b>Needs review (not in the total):</b><br>' + CART_REVIEW.map(function(c){ return esc(c.ident) + ' x ' + c.qty + ' - ' + esc(c.reason); }).join('<br>') + '<br><button class="mini" onclick="dismissReview()">Remove from cart</button> <button class="mini" onclick="ackReview()">Order without these items</button></div>';
   return h;
 }
-window.dismissReview = function(){ CART_REVIEW.forEach(function(c){ delete cart[c.key]; }); CART_REVIEW = []; save('ns_cart', cart); renderCart(); };
-window.ackReview = function(){ REVIEW_ACK = true; renderCart(); };
-window.unackReview = function(){ REVIEW_ACK = false; renderCart(); };
+window.dismissReview = function(){ CART_REVIEW.forEach(function(c){ delete cart[c.key]; }); CART_REVIEW = []; save('ns_cart', cart); warn(''); renderCart(); };
+window.ackReview = function(){ REVIEW_ACK = true; warn(''); renderCart(); };
+window.unackReview = function(){ REVIEW_ACK = false; warn(''); renderCart(); };
 function renderCart(){
   var L = cartLines(), notice = cartNotice();
   if (!L.length && !notice) { $('lines').innerHTML = '<div class="empty" style="border:0">' + P + '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/></svg><b>Your cart is empty</b>Add items from the price list.<div class="eb"><button onclick="document.getElementById(\'backShop\').click()">Browse items</button></div></div>'; $('tots').innerHTML = ''; $('cx').innerHTML = ''; updWa(); return; }
