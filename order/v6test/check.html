@@ -18,7 +18,7 @@ qs.forEach(function(q,k){
  step(function(d,win,w){L(w,'"'+q+'": '+d.getElementById('meta').textContent+' | '+names(d,4));},3300+k*1500);
 });
 var t=2500+qs.length*1500+300;
-step(function(d,win,w){search(d,win,'cat6 blue');},t);
+step(function(d,win,w){search(d,win,'x7 sp mcb');},t);
 step(function(d,win,w){var c=d.querySelector('#list .card');var b=c&&(c.querySelector('.choose')||c.querySelector('button')||c);if(b)b.click();},t+800);
 step(function(d,win,w){var ps=d.getElementById('psheet');L(w,'sheet open: '+(ps&&ps.classList.contains('on'))+' | '+(ps?ps.textContent.replace(/\s+/g,' ').slice(0,200):''));var a=d.getElementById('pAdd');if(a)a.click();},t+1800);
 step(function(d,win,w){L(w,'cart: '+(win.localStorage.getItem('ns_cart')||'').slice(0,160));L(w,'title/brand: '+d.title+' | page width '+d.documentElement.scrollWidth+'/'+d.documentElement.clientWidth);},t+2800);
