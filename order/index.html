@@ -240,7 +240,7 @@ footer a{color:var(--red2);display:inline-block;min-height:44px;padding:12px 2px
 <body>
 <div class="brand">
   <div class="mark">SG</div>
-  <h1>Havells Galaxy – Sangam<small>Bank Road, Motihari · Retailer order · Rates incl. GST</small></h1>
+  <h1>Havells Galaxy – Sangam<small>Main Road, Motihari · Retailer order · Rates incl. GST</small></h1>
   <a href="#orders" id="bookBtn" style="margin-left:auto;color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;opacity:.92;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:9px;flex:none">Order book</a>
   <a href="../" style="color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;opacity:.92;border:1px solid rgba(255,255,255,.55);padding:6px 10px;border-radius:9px;flex:none">← Price lists</a>
 </div>
@@ -1086,7 +1086,7 @@ function foot(){
   var h = '<b>Price lists used (effective date)</b><div class="dates">';
   catOrder().forEach(function(i){ var c = CATS[i]; if (c) h += '<div><span>' + esc(c) + '</span><span>' + esc(D.dates[c] || '') + '</span></div>'; });
   h += '</div><p>Your Rate = List Price − 35% (Chimneys, Cooktops &amp; Hobs: − 30%). Rates incl. GST, subject to change. Final bill as per stock and current price list. “Best seller” / “Popular” = our counter’s top-selling families (Sangam counter sales, Apr–Aug 2026); “Featured” = shop pick. Product photos: havells.com.</p>' +
-    '<p><a href="../">← All price lists</a> · Havells Galaxy – Sangam, Bank Road, Motihari</p>';
+    '<p><a href="../">← All price lists</a> · Havells Galaxy – Sangam, Main Road, Motihari</p>';
   $('foot').innerHTML = h;
 }
 })();
